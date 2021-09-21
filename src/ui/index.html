@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Siglo XXI</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="app.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Logo</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarColor03"
+          aria-controls="navbarColor03"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor03">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <form class="d-flex p-2 bd-highlight">
+              <input
+                class="form-control me-sm-2"
+                type="text"
+                placeholder="Buscar"
+              />
+              <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+                Buscar
+              </button>
+            </form>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+                href="#"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Menu</a
+              >
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main class="container-fluid">
+      <!-- Bodega -->
+      <div class="row">
+        <div class="col-2 btn-group-vertical">
+          <button type="button" class="btn btn-primary" id="btnInicio">
+            Inicio
+          </button>
+          <button type="button" class="btn btn-primary" id="btnBodega">
+            Bodegas
+          </button>
+          <button type="button" class="btn btn-primary">Mesas</button>
+          <button type="button" class="btn btn-primary">Menú</button>
+          <button type="button" class="btn btn-primary">Proveedores</button>
+          <button type="button" class="btn btn-primary">Fiananzas</button>
+          <button type="button" class="btn btn-primary">Cajas</button>
+          <button type="button" class="btn btn-primary">Informes</button>
+        </div>
+        <div class="col-md-6">
+          <div>
+            <table
+              class="table table-hover inv animated fadeInLeft"
+              id="tablaBodega">
+              <thead>
+                <tr>
+                  <th scope="col">SKU</th>
+                  <th scope="col">NOMBRE</th>
+                  <th scope="col">CATEGORÍA</th>
+                  <th scope="col">MARCA</th>
+                  <th scope="col">STOCK ACTUAL</th>
+                  <th scope="col">DETALLES</th>
+                </tr>
+              </thead>
+              <tbody id="bodega"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 p-4 my-auto">
+        <!-- Bodega Form -->
+        <form id="bodegaForm" class="card card-body">
+          <div class="form-group">
+            <input
+              type="number"
+              id="sku"
+              placeholder="bodega Sku: 1111"
+              class="form-control"
+              autofocus
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              id="nombre"
+              placeholder="bodega nombre"
+              step="any"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              id="categoria"
+              placeholder="bodega categoria"
+              step="any"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              id="marca"
+              placeholder="bodega marca"
+              step="any"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="number"
+              id="stock"
+              placeholder="bodega stock"
+              class="form-control"
+              autofocus
+            />
+          </div>
+
+          <div class="form-group">
+            <textarea
+              id="detalle"
+              rows="1"
+              placeholder="bodega detalle"
+              class="form-control"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Agregar</button>
+        </form>
+      </div>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>
