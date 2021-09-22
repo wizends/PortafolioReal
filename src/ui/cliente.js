@@ -9,7 +9,6 @@ const clienteRut = document.querySelector("#rut");
 const clienteFecNac = document.querySelector("#fecnac");
 const clienteEmail = document.querySelector("#email");
 const btnCliente = document.querySelector("#btnCliente");
-const clienteDescription = document.querySelector("#description");
 const clienteList = document.querySelector("#cliente");
 
 let cliente = [];

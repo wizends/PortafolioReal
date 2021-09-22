@@ -7,7 +7,7 @@ let window;
 const createCliente = async (cliente) => {
   try {
     const conn = await getConnection();
-    cliente.id = parseFloat(cliente.id);
+    cliente.id = toString(cliente.id);
     const result = await conn.query("INSERT INTO cliente SET ?", cliente);
     cliente.id = result.insertid;
 
