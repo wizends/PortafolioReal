@@ -4,14 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Siglo XXI</title>
-    <link rel="stylesheet" href="bootstrap.min.css" />
-    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/app.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
     />
   </head>
-
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -62,15 +61,10 @@
       </div>
     </nav>
     <main class="container-fluid">
-      <!-- Bodega -->
       <div class="row">
         <div class="col-2 btn-group-vertical">
-          <button type="button" class="btn btn-primary" id="btnInicio">
-            Inicio
-          </button>
-          <button type="button" class="btn btn-primary" id="btnBodega">
-            Bodegas
-          </button>
+          <button type="button" class="btn btn-primary" id="btnInicio">Inicio</button>
+          <button type="button" class="btn btn-primary" id="btnBodega">Bodegas</button>
           <button type="button" class="btn btn-primary">Mesas</button>
           <button type="button" class="btn btn-primary">Menú</button>
           <button type="button" class="btn btn-primary">Proveedores</button>
@@ -78,88 +72,164 @@
           <button type="button" class="btn btn-primary">Cajas</button>
           <button type="button" class="btn btn-primary">Informes</button>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-10 vis" id="tablaCliente">
           <div>
-            <table
-              class="table table-hover inv animated fadeInLeft"
-              id="tablaBodega">
+            <table class="table table-hover animated fadeInLeft" id="clienteCabecera">
               <thead>
                 <tr>
-                  <th scope="col">SKU</th>
-                  <th scope="col">NOMBRE</th>
-                  <th scope="col">CATEGORÍA</th>
-                  <th scope="col">MARCA</th>
-                  <th scope="col">STOCK ACTUAL</th>
-                  <th scope="col">DETALLES</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">NOMBRES</th>
+                  <th scope="col">APELLIDOS</th>
+                  <th scope="col">RUT</th>
+                  <th scope="col">FECHA DE NACIMIENTO</th>
+                  <th scope="col">EMAIL</th>
                 </tr>
               </thead>
-              <tbody id="bodega"></tbody>
+              <tbody id="cliente">
+                <!-- Cliente contenido -->
+              </tbody>
             </table>
           </div>
         </div>
+        <div class="vis" id="formCliente">
+          <!-- Cliente Form -->
+          <form id="clienteForm" class="card card-body">
+            <div class="form-group">
+              <input type="number"
+                id="id"
+                placeholder="Id cliente:123"
+                class="form-control"
+                autofocus
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                id="clienteNombre"
+                placeholder="Nombres"
+                step="any"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                id="apellido"
+                placeholder="Apellidos"
+                step="any"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                id="rut"
+                placeholder="Rut:11999222-5"
+                step="any"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="date"
+                id="fecnac"
+                class="form-control"
+                autofocus
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                class="form-control"
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar</button>
+          </form>
+        </div>
       </div>
-
-      <div class="col-md-3 p-4 my-auto">
-        <!-- Bodega Form -->
-        <form id="bodegaForm" class="card card-body">
-          <div class="form-group">
-            <input
-              type="number"
-              id="sku"
-              placeholder="bodega Sku: 1111"
-              class="form-control"
-              autofocus
-            />
+          <div class="col-md-10 inv" id="tablaBodega">
+            <div>
+              <table class="table table-hover animated fadeInLeft">
+                <thead>
+                  <tr>
+                    <th scope="col">SKU</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">CATEGORÍA</th>
+                    <th scope="col">MARCA</th>
+                    <th scope="col">STOCK ACTUAL</th>
+                    <th scope="col">DETALLES</th>
+                  </tr>
+                </thead>
+                <tbody id="bodega">
+                  <!-- Bodega contenido -->
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div class="form-group">
-            <input
-              type="text"
-              id="nombre"
-              placeholder="bodega nombre"
-              step="any"
-              class="form-control"
-            />
+          <div class="inv" id="formBodega">
+            <!-- Bodega Form -->
+            <form id="bodegaForm" class="card card-body">
+              <div class="form-group">
+                <input type="number"
+                  id="sku"
+                  placeholder="bodega Sku: 1111"
+                  class="form-control"
+                  autofocus
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="nombre"
+                  placeholder="bodega nombre"
+                  step="any"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="categoria"
+                  placeholder="bodega categoria"
+                  step="any"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="marca"
+                  placeholder="bodega marca"
+                  step="any"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="number"
+                  id="stock"
+                  placeholder="bodega stock"
+                  class="form-control"
+                  autofocus
+                />
+              </div>
+              <div class="form-group">
+                <textarea
+                  id="detalle"
+                  rows="1"
+                  placeholder="bodega detalle"
+                  class="form-control"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Agregar</button>
+            </form>
           </div>
-          <div class="form-group">
-            <input
-              type="text"
-              id="categoria"
-              placeholder="bodega categoria"
-              step="any"
-              class="form-control"
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="text"
-              id="marca"
-              placeholder="bodega marca"
-              step="any"
-              class="form-control"
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="number"
-              id="stock"
-              placeholder="bodega stock"
-              class="form-control"
-              autofocus
-            />
-          </div>
-
-          <div class="form-group">
-            <textarea
-              id="detalle"
-              rows="1"
-              placeholder="bodega detalle"
-              class="form-control"
-            ></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Agregar</button>
-        </form>
+        </div>
       </div>
     </main>
     <script src="./app.js"></script>
+    <scrip src="./cliente.js"></scrip>
   </body>
 </html>
