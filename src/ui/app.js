@@ -135,7 +135,7 @@ function renderBodega(tasks) {
 const clienteForm = document.querySelector("#clienteForm");
 const clienteNombre = document.querySelector("#clienteNombre");
 const clienteApellido = document.querySelector("#apellido");
-const clienteId = document.querySelector("#id");
+const clienteId = document.querySelector("#idCliente");
 const clienteRut = document.querySelector("#rut");
 const clienteFecNac = document.querySelector("#fecnac");
 const clienteEmail = document.querySelector("#email");
@@ -172,12 +172,12 @@ clienteForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const cliente = {
-      id: "123"/*clienteId.value*/,
-      nombre:"ricardo" /*clienteNombre.value*/,
-      apellido:"perez"/*clienteApellido.value*/ ,
-      rut: "19634503-5"/*clienteRut.value*/,
-      fecnac: clienteFecNac.value,
-      email:"ricardo@gmail.com" /*clienteEmail.value*/
+      id: clienteId.value,
+      nombres: clienteNombre.value,
+      apellidos: clienteApellido.value,
+      rut: clienteRut.value,
+      fecha_nac: clienteFecNac.value,
+      email: clienteEmail.value
     };
 
     if (!editingStatus) {
@@ -205,10 +205,10 @@ function renderCliente(tasks) {
     clienteList.innerHTML += `
         <tr>
           <th scope="row">${t.id}</th>
-          <td>${t.nombre}</td>
-          <td>${t.apellido}</td>
+          <td>${t.nombres}</td>
+          <td>${t.apellidos}</td>
           <td>${t.rut}</td>
-          <td>${t.fecnac}</td>
+          <td>${t.fecha_nac}</td>
           <td>${t.email}</td>
           <td><button class="btn btn-danger btn-sm" onclick="deleteCliente('${t.id}')">
           DELETE

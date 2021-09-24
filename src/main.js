@@ -4,10 +4,10 @@ const { getConnection } = require("./database");
 let window;
 
 /*CLIENTE*/
-const createCliente = async (cliente) => {
+const createCliente =  async (cliente) => {
   try {
     const conn = await getConnection();
-    cliente.id = toString(cliente.id);
+    
     const result = await conn.query("INSERT INTO cliente SET ?", cliente);
     cliente.id = result.insertid;
 
@@ -21,12 +21,15 @@ const createCliente = async (cliente) => {
     return cliente;
   } catch (error) {
     console.log(error);
+    
   }
 };
 const getCliente = async () => {
   const conn = await getConnection();
   const results = await conn.query("SELECT * FROM cliente");
+  console.log(results);
   return results;
+ 
 };
 const deleteCliente = async (id) => {
   const conn = await getConnection();
