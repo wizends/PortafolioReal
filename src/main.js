@@ -48,15 +48,13 @@ const updateCliente = async (id, cliente) => {
 };
 /*FIN CLIENTE*/
 
-
-
-
-
-
-
-
-
-
+/*LOGIN */
+const consultarUsuario = async (user, password) => {
+  const conn = await getConnection();
+  const result = await conn.query("SELECT * FROM user WHERE username = ? And password = ?", [user, password,]);
+  return result[0];
+};
+/*FIN LOGIN */
 
 
 
@@ -98,19 +96,58 @@ const getbodegaBysku = async (sku) => {
   const result = await conn.query("SELECT * FROM bodega WHERE sku = ?", sku);
   return result[0];
 };
-
-
-const consultarUsuario = async (user, password) => {
-    const conn = await getConnection();
-    const result = await conn.query("SELECT * FROM user WHERE username = ? And password = ?", [user, password,]);
-    return result[0];
-};
 const updateBodega = async (sku, bodega) => {
   const conn = await getConnection();
   const result = await conn.query("UPDATE bodega SET ? WHERE sku = ?", [bodega,sku,]);
   console.log(result)
 };
 /*FIN BODEGA*/
+
+
+/*MESAS*/
+const createMesa = async (mesa) => {
+  try {
+    const conn = await getConnection();
+    mesa.id = parseFloat(mesa.id);
+    const result = await conn.query("INSERT INTO mesa SET ?", mesa);
+    mesa.id = result.insertid;
+
+    // Notify the User
+    new Notification({
+      title: "Electron Mysql",
+      body: "New mesa Saved Successfully",
+    }).show();
+
+    // Return the created mesa
+    return mesa;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getMesa = async () => {
+  const conn = await getConnection();
+  const results = await conn.query("SELECT * FROM mesa");
+  return results;
+};
+
+const deleteMesa = async (mesaId) => {
+  const conn = await getConnection();
+  const result = await conn.query("DELETE FROM mesa WHERE id = ?", mesaId);
+  return result;
+};
+
+const getMesaById = async (mesaId) => {
+  const conn = await getConnection();
+  const result = await conn.query("SELECT * FROM mesa WHERE id = ?", mesaId);
+  return result[0];
+};
+const updateMesa = async (mesaId, mesa) => {
+  const conn = await getConnection();
+  const result = await conn.query("UPDATE mesa SET ? WHERE id = ?", [mesa,mesaId,]);
+  console.log(result)
+};
+/*FIN MESAS*/
 function createPrincipalView() {
   childWindow = new BrowserWindow({
     width: 800,
@@ -147,11 +184,14 @@ module.exports = {
   deleteBodega,
   getbodegaBysku,
   updateBodega,
-
   createCliente,
   getCliente,
   deleteCliente,
   getClienteByid,
   updateCliente,
-
+  createMesa,
+  getMesa,
+  getMesaById,
+  deleteMesa,
+  updateMesa
 };

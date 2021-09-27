@@ -16,11 +16,14 @@ const BodegaList = document.querySelector("#bodega");
 /*NAVEGACION*/
 const navegacionCliente = document.getElementById('btnInicio')
 const navegacionBodega = document.getElementById('btnBodega')
+const navegacionMesas = document.getElementById('btnMesa')
 
 const tablaBodega = document.getElementById('tablaBodega')
 const tablaCliente = document.getElementById('tablaCliente')
+const tablaMesa = document.getElementById('tablaMesa')
 const formBodega = document.getElementById('formBodega')
 const formCliente = document.getElementById('formCliente')
+const formMesa = document.getElementById('formMesa')
 
 navegacionCliente.addEventListener('click', async function(event){
   if(tablaCliente != null){
@@ -28,8 +31,10 @@ navegacionCliente.addEventListener('click', async function(event){
     formCliente.className = "animated fadeInLeft vis"
     tablaBodega.className = "inv"
     formBodega.className = "inv"
+    tablaMesa.className = "inv"
+    formMesa.className = "inv"
   }
-})
+});
 
 navegacionBodega.addEventListener('click' , async function(event){
   if(tablaBodega != null){
@@ -37,6 +42,19 @@ navegacionBodega.addEventListener('click' , async function(event){
     formBodega.className = "animated fadeInLeft vis"
     tablaCliente.className = "inv"
     formCliente.className = "inv"
+    tablaMesa.className = "inv"
+    formMesa.className = "inv"
+  }
+});
+
+navegacionMesas.addEventListener('click', async function(event){
+  if(tablaMesa != null){
+    tablaMesa.className = "vis"
+    formMesa.className = "animated fadeInLeft vis"
+    tablaCliente.className = "inv"
+    formCliente.className = "inv"
+    tablaBodega.className = "inv"
+    formBodega.className = "inv"
   }
 })
 /*FIN NAVEGACION*/
@@ -130,7 +148,7 @@ function renderBodega(tasks) {
 /*FIN BODEGA CRUD */
 
 
-
+/*CLIENTE CRUD */
 
 const clienteForm = document.querySelector("#clienteForm");
 const clienteNombre = document.querySelector("#clienteNombre");
@@ -221,6 +239,93 @@ function renderCliente(tasks) {
   });
 }
 
+/*FIN CLIENTE CRUD*/
+
+
+/*MESA CRUD*/
+const mesaForm = document.querySelector("#mesaForm");
+const mesaCamarero = document.querySelector("#camarero");
+const mesaSillas = document.querySelector("#numSillas");
+const mesaId = document.querySelector("#idMesa");
+const mesaZonas = document.querySelector("#mesaZona");
+const btnMesa = document.querySelector("#btnMesa");
+const mesaList = document.querySelector("#mesa");
+
+let mesa = [];
+
+let ediotMesaId;
+
+const deleteMesa = async (mesaId) => {
+  const response = confirm("¿Estas seguro de que deseas borrar este elemento?");
+  if (response) {
+    await main.deleteMesa(mesaId);
+    await getMesa();
+  }
+  return;
+};
+
+const editMesa = async (mesaId) => {
+  const mesa = await main.getMesaById(mesaId);
+  mesaCamarero.value = mesa.camarero;
+  mesaSillas.value = mesa.sillas;
+  mesaZonas.value = mesa.zona;
+
+  editingStatus = true;
+  ediotMesaId = mesaId;
+};
+
+mesaForm.addEventListener("submit", async (e) => {
+  try {
+    e.preventDefault();
+
+    const mesa = {
+      id: mesaId.value,
+      camarero: mesaCamarero.value,
+      sillas: mesaSillas.value,
+      zona: mesaZonas.value,
+    };
+
+    if (!editingStatus) {
+      const savedMesa = await main.createMesa(mesa);
+      console.log(savedMesa);
+    } else {
+      const mesaUpdated = await main.updateMesa(ediotMesaId, mesa);
+      console.log(mesaUpdated);
+
+      // Reset
+      editingStatus = false;
+      ediotMesaId = "";
+    }
+
+    mesaForm.reset();
+    mesaId.focus();
+    getMesa();
+  } catch (error) {
+    console.log(error);
+  }
+});
+function renderMesa(tasks) {
+  mesaList.innerHTML = "";
+  tasks.forEach((t) => {
+    mesaList.innerHTML += `
+        <tr>
+          <th scope="row">${t.id}</th>
+          <td>${t.camarero}</td>
+          <td>${t.sillas}</td>
+          <td>${t.zona}</td>
+          <td><button class="btn btn-danger btn-sm" onclick="deleteMesa('${t.id}')">
+          DELETE
+        </button>
+        <button class="btn btn-secondary btn-sm" onclick="editMesa('${t.id}')">
+          EDIT 
+        </button></td>
+        </tr>  
+    `;
+  });
+}
+
+/* FIN MESA CRUD*/
+
 const getCliente = async () => {
   cliente = await main.getCliente();
   renderCliente(cliente);
@@ -231,9 +336,15 @@ const getBodega = async () => {
   renderBodega(bodega);
 };
 
+const getMesa = async () =>{
+  mesa = await main.getMesa();
+  renderMesa(mesa);
+}
+
 async function init() {
   getBodega();
   getCliente();
+  getMesa();
 }
 
 init();
