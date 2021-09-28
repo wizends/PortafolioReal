@@ -1,5 +1,8 @@
 const { BrowserWindow, Notification} = require("electron");
 const { getConnection } = require("./database");
+const notifier = require('node-notifier');
+
+
 
 let window;
 
@@ -26,7 +29,7 @@ const createCliente =  async (cliente) => {
 };
 const getCliente = async () => {
   const conn = await getConnection();
-  const results = await conn.query("SELECT * FROM cliente");
+  const results = await conn.query("SELECT * FROM cliente;");
   console.log(results);
   return results;
  
@@ -38,7 +41,7 @@ const deleteCliente = async (id) => {
 };
 const getClienteByid = async (id) => {
   const conn = await getConnection();
-  const result = await conn.query("SELECT * FROM cliente WHERE id = ?", id);
+  const result = await conn.query("SELECT id, nombres, apellidos, rut, fecha_nac, email FROM cliente WHERE id = ?", id);
   return result[0];
 };
 const updateCliente = async (id, cliente) => {
@@ -108,7 +111,6 @@ const updateBodega = async (sku, bodega) => {
 const createMesa = async (mesa) => {
   try {
     const conn = await getConnection();
-    mesa.id = parseFloat(mesa.id);
     const result = await conn.query("INSERT INTO mesa SET ?", mesa);
     mesa.id = result.insertid;
 
@@ -170,6 +172,7 @@ function createLoginView() {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false
     },
   });
 

@@ -1,4 +1,3 @@
-const { remote } = require("electron");
 const main = require("../main");
 
 const bodegaForm = document.querySelector("#bodegaForm");
@@ -11,6 +10,10 @@ const bodegaDetalle = document.querySelector("#detalle");
 const btnBodega = document.querySelector("#btnBodega");
 const bodegaDescription = document.querySelector("#description");
 const BodegaList = document.querySelector("#bodega");
+
+
+
+
 
 
 /*NAVEGACION*/
@@ -175,10 +178,10 @@ const deleteCliente = async (id) => {
 
 const editCliente = async (id) => {
   const cliente = await main.getClienteByid(id);
-  clienteNombre.value = cliente.nombre;
-  clienteApellido.value = cliente.apellido;
+  clienteNombre.value = cliente.nombres;
+  clienteApellido.value = cliente.apellidos;
   clienteRut.value = cliente.rut;
-  clienteFecNac.value = cliente.fecnac;
+  clienteFecNac.value = cliente.fecha_nac;
   clienteEmail.value = cliente.email;
 
   editingStatus = true;
