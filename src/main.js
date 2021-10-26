@@ -1,7 +1,6 @@
 const { BrowserWindow, Notification} = require("electron");
-const { getConnection } = require("./database");
-const notifier = require('node-notifier');
-
+const { getConnection } = require("./database2");
+const oracledb = require('oracledb');
 
 
 let window;
@@ -11,7 +10,7 @@ const createCliente =  async (cliente) => {
   try {
     const conn = await getConnection();
     
-    const result = await conn.query("INSERT INTO cliente SET ?", cliente);
+    const result = await conn.query("INSERT INTO cliente SET :cliente", [cliente]);
     cliente.id = result.insertid;
 
     // Notify the User
@@ -53,8 +52,7 @@ const updateCliente = async (id, cliente) => {
 
 /*LOGIN */
 const consultarUsuario = async (user, password) => {
-  const conn = await getConnection();
-  const result = await conn.query("SELECT * FROM user WHERE username = ? And password = ?", [user, password,]);
+  const result = await oracledb.getConnection(config).query("SELECT * FROM usuario WHERE username = :username And password = :password", [user, password,]);
   return result[0];
 };
 /*FIN LOGIN */

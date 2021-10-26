@@ -1,17 +1,27 @@
-const electron = require("electron");
-const sql = require("mssql");
+const oracledb = require('oracledb')
 const config = {
-  user: "ql*****",
-  password: "qlh****",
-  server: "123.20.****",
-  database: "QLHS",
-};
-async () => {
+  user: 'portafolio1',
+  password: '123',
+  connectString: 'localhost:1521/xe'
+}
+async function getEmployee (empId) {
+  let conn
+
   try {
-    await sql.connect(config);
-    const result = await sql.query`select * from DM_DONVI`;
-    console.dir(result);
+    conn = await oracledb.getConnection(config)
+    const result = await conn.execute(
+      'select * from usuario where ID = :id',
+      [empId]
+    )
+
+    console.log(result.rows)
   } catch (err) {
-    console.log(err);
+    console.log('Ouch!', err)
+  } finally {
+    if (conn) { // conn assignment worked, need to close
+      await conn.close()
+    }
   }
-};
+}
+
+getEmployee("1u")
