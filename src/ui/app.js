@@ -1,4 +1,5 @@
 const main = require("../main");
+const oracledb = require('oracledb')
 
 const bodegaForm = document.querySelector("#bodegaForm");
 const bodegaNombre = document.querySelector("#nombre");
@@ -167,39 +168,52 @@ let cliente = [];
 
 let ediotClienteId;
 
-const deleteCliente = async (id) => {
+const deleteCliente = async (id_cliente) => {
   const response = confirm("¿Estas seguro de que deseas borrar este elemento?");
   if (response) {
-    await main.deleteCliente(id);
+    await main.deleteCliente(id_cliente);
     await getCliente();
   }
   return;
 };
 
-const editCliente = async (id) => {
-  const cliente = await main.getClienteByid(id);
-  clienteNombre.value = cliente.nombres;
-  clienteApellido.value = cliente.apellidos;
-  clienteRut.value = cliente.rut;
-  clienteFecNac.value = cliente.fecha_nac;
-  clienteEmail.value = cliente.email;
+const editCliente = async (id_cliente) => {
+  const cliente = await main.getClienteByid([parseInt(id_cliente)]);
+  console.log([id_cliente])
+  console.log(cliente[0])
+  
+  clienteNombre.value =  cliente[0];
+  clienteApellido.value = cliente[1];
+  clienteRut.value = cliente[2];
+  clienteFecNac.value = cliente[3];
+  clienteEmail.value = cliente[4];
 
   editingStatus = true;
-  ediotClienteId = id;
+  ediotClienteId = [id_cliente];
 };
 
 clienteForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
   try {
+    /*const cliente = [
+      id_cliente = { dir: oracledb.BIND_IN, val:parseInt(clienteId.value), type: oracledb.NUMBER } ,
+      nombres = { dir: oracledb.BIND_IN, val:clienteNombre.value, type: oracledb.STRING } ,
+      apellidos = { dir: oracledb.BIND_IN, val:clienteApellido.value, type: oracledb.STRING } ,
+      rut = { dir: oracledb.BIND_IN, val:clienteRut.value, type: oracledb.STRING } ,
+      fecha_nac = { dir: oracledb.BIND_IN, val:clienteFecNac.value, type: oracledb.STRING } ,
+      email = { dir: oracledb.BIND_IN, val:clienteEmail.value, type: oracledb.STRING } 
+    ]*/
+    const cliente = [
+      id_cliente = parseInt(clienteId.value) ,
+      nombres = clienteNombre.value ,
+      apellidos = clienteApellido.value ,
+      rut = clienteRut.value ,
+      fecha_nac = clienteFecNac.value ,
+      email = clienteEmail.value 
+    ]
+    
+    console.log(cliente)
     e.preventDefault();
-
-    const cliente = {
-      id: clienteId.value,
-      nombres: clienteNombre.value,
-      apellidos: clienteApellido.value,
-      rut: clienteRut.value,
-      fecha_nac: clienteFecNac.value,
-      email: clienteEmail.value
-    };
 
     if (!editingStatus) {
       const savedCliente = await main.createCliente(cliente);
@@ -207,6 +221,7 @@ clienteForm.addEventListener("submit", async (e) => {
     } else {
       const clienteUpdated = await main.updateCliente(ediotClienteId, cliente);
       console.log(clienteUpdated);
+      
 
       // Reset
       editingStatus = false;
@@ -216,25 +231,28 @@ clienteForm.addEventListener("submit", async (e) => {
     clienteForm.reset();
     clienteNombre.focus();
     getCliente();
-  } catch (error) {
+
+  }
+  catch (error) {
     console.log(error);
   }
 });
+
 function renderCliente(tasks) {
   clienteList.innerHTML = "";
   tasks.forEach((t) => {
     clienteList.innerHTML += `
         <tr>
-          <th scope="row">${t.id}</th>
-          <td>${t.nombres}</td>
-          <td>${t.apellidos}</td>
-          <td>${t.rut}</td>
-          <td>${t.fecha_nac}</td>
-          <td>${t.email}</td>
-          <td><button class="btn btn-danger btn-sm" onclick="deleteCliente('${t.id}')">
+          <th scope="row">${t[0]}</th>
+          <td>${t[1]}</td>
+          <td>${t[2]}</td>
+          <td>${t[3]}</td> 
+          <td>${t[4]}</td>
+          <td>${t[5]}</td>
+          <td><button class="btn btn-danger btn-sm" onclick="deleteCliente(${t[0]})">
           DELETE
         </button>
-        <button class="btn btn-secondary btn-sm" onclick="editCliente('${t.id}')">
+        <button class="btn btn-secondary btn-sm" onclick="editCliente(${parseInt(t[0])})">
           EDIT 
         </button></td>
         </tr>  

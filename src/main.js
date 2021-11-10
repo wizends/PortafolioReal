@@ -1,59 +1,56 @@
 const { BrowserWindow, Notification} = require("electron");
-const { getConnection } = require("./database2");
-const oracledb = require('oracledb');
-
-
-let window;
+const oracledb = require("oracledb");
+const {obtenerConn} = require('./database2')
+oracledb.outFormat = oracledb.OUT_FORMAT_ARRAY;
 
 /*CLIENTE*/
 const createCliente =  async (cliente) => {
+
   try {
-    const conn = await getConnection();
-    
-    const result = await conn.query("INSERT INTO cliente SET :cliente", [cliente]);
-    cliente.id = result.insertid;
-
-    // Notify the User
-    new Notification({
-      title: "Electron Mysql",
-      body: "New Cliente Saved Successfully",
-    }).show();
-
-    // Return the created Cliente
+    const conn = await obtenerConn();
+    const sql = 'BEGIN  sp_insertarCliente(:id,:nombre,:apellido,:rut,:fecha_nac,:email); END;';
+    conn.execute(sql,cliente);
+    conn.commit();
+        // Return the created Cliente
     return cliente;
+    
   } catch (error) {
     console.log(error);
-    
   }
 };
 const getCliente = async () => {
-  const conn = await getConnection();
-  const results = await conn.query("SELECT * FROM cliente;");
-  console.log(results);
-  return results;
+  const conn = await obtenerConn();
+  const sql = "select * from cliente";
+  const results = await conn.execute(sql);
+  console.log(results.rows);
+  return results.rows;
  
 };
-const deleteCliente = async (id) => {
-  const conn = await getConnection();
-  const result = await conn.query("DELETE FROM cliente WHERE id = ?", id);
+const deleteCliente = async (id_cliente) => {
+  const conn = await obtenerConn();
+  const result = await conn.execute("DELETE FROM cliente WHERE id = ?", id_cliente);
   return result;
 };
-const getClienteByid = async (id) => {
-  const conn = await getConnection();
-  const result = await conn.query("SELECT id, nombres, apellidos, rut, fecha_nac, email FROM cliente WHERE id = ?", id);
-  return result[0];
+const getClienteByid = async (id_cliente) => {
+  const conn = await obtenerConn();
+  const result = await conn.execute("select nombres, apellidos, rut, TO_CHAR(TO_DATE(fecha_nac,'DD-MM-YYYY'),'yyyy-MM-dd') AS fecha, email  from cliente where id_cliente = :id", id_cliente);
+  console.log(result.rows)
+  return result.rows[0];
 };
-const updateCliente = async (id, cliente) => {
-  const conn = await getConnection();
-  const result = await conn.query("UPDATE cliente SET ? WHERE id = ?", [cliente,id,]);
+const updateCliente = async (id_cliente, cliente) => {
+  const conn = await obtenerConn();
+  const result = await conn.execute("UPDATE cliente SET :cliente WHERE id_cliente = :id_cliente", [cliente, id_cliente]);
   console.log(result)
 };
 /*FIN CLIENTE*/
 
-/*LOGIN */
-const consultarUsuario = async (user, password) => {
-  const result = await oracledb.getConnection(config).query("SELECT * FROM usuario WHERE username = :username And password = :password", [user, password,]);
-  return result[0];
+/*LOGIN listo con sql*/
+const consultarUsuario = async (parametros) => {
+  conn = await obtenerConn();
+  const sql = 'select username, password from usuario where username = :usuario and password = :password';
+  const result = await conn.execute(sql,parametros) 
+  return result.rows[0];
+  
 };
 /*FIN LOGIN */
 

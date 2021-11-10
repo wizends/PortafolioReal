@@ -1,4 +1,4 @@
-const { remote } = require("electron");
+/*const { remote } = require("electron");
 const main = require("../main");
 
 const clienteForm = document.querySelector("#clienteForm");
@@ -106,3 +106,4 @@ async function init() {
 
 init();
 
+*/

@@ -1,19 +1,25 @@
 const oracledb = require('oracledb')
-const config = {
+const config = oracledb.getConnection({
   user: 'portafolio1',
   password: '123',
-  connectString: 'localhost:1521/xe'
+  connectString: 'localhost:1521/xe',
+})
+
+function obtenerConn(){
+  return config;
 }
-async function getEmployee (empId) {
+
+module.exports = {obtenerConn};
+
+/*
+async function getEmployee (parametros) {
   let conn
 
   try {
-    conn = await oracledb.getConnection(config)
-    const result = await conn.execute(
-      'select * from usuario where ID = :id',
-      [empId]
-    )
-
+    conn = await obtenerConn();
+    const sql = 'select * from usuario where username = :usuario and password = :password';
+    const result = await conn.execute(sql,parametros) 
+ 
     console.log(result.rows)
   } catch (err) {
     console.log('Ouch!', err)
@@ -24,4 +30,8 @@ async function getEmployee (empId) {
   }
 }
 
-getEmployee("1u")
+getEmployee(
+  parametros = [
+  "Ricardo",
+  "123"]
+  )*/
