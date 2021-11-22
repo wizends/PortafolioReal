@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Siglo XXI</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/app.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Logo</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarColor03"
+          aria-controls="navbarColor03"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor03">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <form class="d-flex p-2 bd-highlight">
+              <input
+                class="form-control me-sm-2"
+                type="text"
+                placeholder="Buscar"
+              />
+              <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+                Buscar
+              </button>
+            </form>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+                href="#"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Menu</a
+              >
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main class="container-fluid">
+      <div class="row">
+        <div class="col-2 btn-group-vertical">
+          <button type="button" class="btn btn-primary" id="btnInicio">Inicio</button>
+          <button type="button" class="btn btn-primary" id="btnBodega">Bodegas</button>
+          <button type="button" class="btn btn-primary" id="btnMesa">Mesas</button>
+          <button type="button" class="btn btn-primary" id="btnPlato">Platos</button>
+          <button type="button" class="btn btn-primary">Proveedores</button>
+          <button type="button" class="btn btn-primary">Fiananzas</button>
+          <button type="button" class="btn btn-primary">Cajas</button>
+          <button type="button" class="btn btn-primary">Informes</button>
+        </div>
+       <!-- Cliente -->
+<div class="col-md-10 vis" id="tablaCliente">
+  <div>
+      <table class="table table-hover animated fadeInLeft" id="clienteCabecera">
+          <thead>
+              <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">NOMBRES</th>
+                  <th scope="col">APELLIDOS</th>
+                  <th scope="col">RUT</th>
+                  <th scope="col">FECHA DE NACIMIENTO</th>
+                  <th scope="col">EMAIL</th>
+              </tr>
+          </thead>
+          <tbody id="cliente">
+              <!-- Cliente contenido -->
+          </tbody>
+      </table>
+  </div>
+</div>
+<div class="col-md-10 vis" id="formCliente">
+  <form id="clienteForm" class="card card-body">
+    <!-- Cliente Form -->
+    <div class="form-group">
+      <input type="text" id="idCliente" placeholder="Id cliente:123" class="form-control" autofocus />
+  </div>
+  <div class="form-group">
+      <input type="text" id="clienteNombre" placeholder="Nombres" step="any" class="form-control" />
+  </div>
+  <div class="form-group">
+      <input type="text" id="apellido" placeholder="Apellidos" step="any" class="form-control" />
+  </div>
+  <div class="form-group">
+      <input type="text" id="rut" placeholder="Rut:11999222-5" step="any" class="form-control" />
+  </div>
+  <div class="form-group">
+      <input type="date" id="fecnac" class="form-control" autofocus />
+  </div>
+  <div class="form-group">
+      <input type="email" id="email" placeholder="Email" class="form-control"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Agregar</button>
+  </form>
+</div>
+<!-- Fin Cliente -->
+        <!-- Bodega -->
+<div class="col-md-10 inv" id="tablaBodega">
+  <div>
+      <table class="table table-hover animated fadeInLeft">
+          <thead>
+              <tr>
+                  <th scope="col">SKU</th>
+                  <th scope="col">NOMBRE</th>
+                  <th scope="col">MARCA</th>
+                  <th scope="col">STOCK ACTUAL</th>
+                  <th scope="col">DETALLES</th>
+              </tr>
+          </thead>
+          <tbody id="bodega">
+              <!-- Bodega contenido -->
+          </tbody>
+      </table>
+  </div>
+</div>
+<div class="inv" id="formBodega">
+  <!-- Bodega Form -->
+  <form id="bodegaForm" class="card card-body">
+      <div class="form-group">
+          <input type="text" id="sku" placeholder="bodega Sku: 1111" class="form-control" autofocus />
+      </div>
+      <div class="form-group">
+          <input type="text" id="nombre" placeholder="bodega nombre" step="any" class="form-control" />
+      </div>
+      <div class="form-group">
+          <input type="text" id="marca" placeholder="bodega marca" step="any" class="form-control" />
+      </div>
+      <div class="form-group">
+          <input type="number" id="stock" placeholder="bodega stock" class="form-control" autofocus />
+      </div>
+      <div class="form-group">
+          <textarea id="detalle" rows="1" placeholder="bodega detalle" class="form-control"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Agregar</button>
+  </form>
+</div>
+<!--Fin Bodega -->
+        <!-- Mesa -->
+<div class="col-md-10 inv" id="tablaMesa">
+  <div>
+      <table class="table table-hover animated fadeInLeft">
+          <thead>
+              <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">CAMARERO</th>
+                  <th scope="col">CANTIDAD DE SILLAS</th>
+                  <th scope="col">ZONA</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+              </tr>
+          </thead>
+          <tbody id="mesa">
+              <!-- Mesa contenido -->
+          </tbody>
+      </table>
+  </div>
+</div>
+<div class="inv" id="formMesa">
+  <!-- Mesa Form -->
+  <form id="mesaForm" class="card card-body">
+      <div class="form-group">
+          <input type="text" id="idMesa" placeholder="numero de mesa + letra inicio sector" class="form-control"
+              autofocus />
+      </div>
+      <div class="form-group">
+          <input type="text" id="camarero" placeholder="camarero" step="any" class="form-control" />
+      </div>
+      <div class="form-group">
+          <input type="number" id="numSillas" placeholder="Numero de sillas" step="any" class="form-control" />
+      </div>
+      <div class="form-group">
+          <select class="form-select" aria-label="Selecciona una Zona" id="mesaZona">
+              <option selected>Elije</option>
+              <option value="Terraza">Terraza</option>
+              <option value="Interior">Interior</option>
+          </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Agregar</button>
+  </form>
+</div>
+<!--Fin Mesa -->
+
+<!--Inicio seccion Plato-->
+<div class="col-md-10 inv" id="tablaPlato">
+  <div>
+      <table class="table table-hover animated fadeInLeft">
+          <thead>
+              <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">NOMBRE</th>
+                  <th scope="col">STOCK</th>
+                  <th scope="col">TIPO</th>
+                  <th scope="col">PRECIO</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+              </tr>
+          </thead>
+          <tbody id="plato">
+              <!-- Plato contenido -->
+          </tbody>
+      </table>
+  </div>
+</div>
+<div class="inv" id="formPlato">
+  <!-- Plato Form -->
+  <form id="platoForm" class="card card-body">
+      <div class="form-group">
+          <input type="text" id="idPlato" placeholder="numero del Plato" class="form-control"
+              autofocus />
+      </div>
+      <div class="form-group">
+        <input type="text" id="nombrePlato" placeholder="Nombre del Plato" step="any" class="form-control" />
+    </div>
+      <div class="form-group">
+          <input type="number" id="stockPlato" placeholder="Stock" step="any" class="form-control" />
+      </div>
+      <div class="form-group">
+          <select class="form-select" aria-label="Selecciona una tipo de plato" id="tipoPlato">
+            <option selected>Selecciona tipo de plato</option>
+            <option value="Principal">Principal</option>
+            <option value="Acompañante">Acompañante</option>
+            <option value="Bebida">Bebida</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input type="number" id="precioPlato" placeholder="Precio" step="any" class="form-control" />
+    </div>
+    <div class="form-group">
+      <select class="form-select" aria-label="Selecciona orientacion del plato" id="orientacionPlato">
+        <option selected>Selecciona orientacion del plato</option>
+        <option value="1">Veggie</option>
+        <option value="2">Carne</option>
+        <option value="3">Sin gluten</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <select class="form-select" aria-label="Selecciona una tipo de plato" id="cocineroPlato">
+      <option selected>Selecciona cocinero</option>
+      <option value="1C">Gerardo Ramos</option>
+      <option value="2C">Bernardo Dior</option>
+    </select>
+  </div>  
+  
+      <submit type="button" class="btn btn-primary">Agregar</submit>
+  </form>
+</div>
+<!--Plato Plato-->
+
+
+
+      </div>
+    </main>
+    <script src="../browser-side/app.js"></script>
+  </body>
+</html>

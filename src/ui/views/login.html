@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="../css/app.css">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  
+</head>
+<body>
+  <div class="mainApp">
+    <div class="contentArea">
+      <div class="contentPages">
+        <div class="container-sideImg">
+          <img src="../../imagenes/sideimg.jpg" class="sideImg" />
+        </div>
+        <div class="login-container">
+          <h1>
+            PORTAFOLIO DE TITULO <br />
+            SIGLO XXI
+          </h1>
+          <div class="login">
+            <form id="loginForm" class="loginFormulario">
+              <a>USUARIO:</a>
+              <input type="text" id="user"/><br />
+              <a>CONTRASEÑA:</a>
+              <input type="password" id="password"/>
+              <button type="submit" class="login-button" id="loginBtn"><span>Iniciar sesion</span></button>
+              <br />
+              <div class="error-page">
+                <div id="tryAgain"></div>
+              </div>
+            </form>
+            <div id="mensaje"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../browser-side/login.js"></script>
+</body>
+</html>
