@@ -5,15 +5,15 @@ oracledb.outFormat = oracledb.OUT_FORMAT_ARRAY;
 const createPlato = async (plato) => {
     try {
       const conn = await obtenerConn();
-      sql = 'BEGIN sp_insertarPlato(:id,:nombre,:stock,:tipo,:precio,:orientacion,:menuid,:cocinaid); END;';
+      sql = 'BEGIN sp_insertarplato(:id,:nombre,:stock,:tipo,:precio,:menuid,:cocinaid); END;';
       const result = await conn.execute(sql,plato);
       console.log(result)
       conn.commit();
   
       // Notify the User
-      new Notification({
+     let notificacion = new Notification({
         title: "Electron Mysql",
-        body: "New Plato Saved Successfully",
+        body: "New Plato Saved Successfully"
       }).show();
   
       // Return the created Plato
@@ -39,13 +39,13 @@ const createPlato = async (plato) => {
   
   const getPlatoById = async (platoId) => {
     const conn = await obtenerConn();
-    const sql = "select nombre, stock, tipo, precio from Plato where id = :id"
+    const sql = "select nombre, stock, tipo, precio, menu_id, cocina_id from Plato where id = :id"
     const result = await conn.execute(sql,platoId);
     return result.rows[0];
   };
   const updatePlato = async (plato) => {
     const conn = await obtenerConn();
-    const sql = 'BEGIN sp_updatePlato(:id,:nombre,:stock,:tipo,:precio ); END;';
+    const sql = 'BEGIN sp_updateplato(:id,:nombre,:stock,:tipo,:precio,:menuid,:cocinaid); END;';
     const result = await conn.execute(sql,plato);
     conn.commit();
     console.log(result)

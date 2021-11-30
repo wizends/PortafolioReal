@@ -116,3 +116,13 @@ html, body{
 .card-body{
   margin-top:100px;
 }
+.form-group{
+  margin:10px;
+}
+#contenidoCreado
+{
+  margin: 0px;
+  height: 144px;
+  width: 250px;
+  resize: none;
+}

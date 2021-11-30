@@ -1,0 +1,61 @@
+<!--Inicio seccion Proveedor-->
+<div class="col-md-10 inv" id="tablaProveedor">
+    <div>
+        <table class="table table-hover animated fadeInLeft">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">STOCK</th>
+                    <th scope="col">TIPO</th>
+                    <th scope="col">PRECIO</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody id="Proveedor">
+                <!-- Proveedor contenido -->
+            </tbody>
+        </table>
+    </div>
+  </div>
+  <div class="inv" id="formProveedor">
+    <!-- Proveedor Form -->
+    <form id="proveedorForm" class="card card-body">
+        <div class="form-group">
+            <input type="text" id="idProveedor" placeholder="Id del Proveedor" class="form-control"
+                autofocus />
+        </div>
+        <div class="form-group" id="pedidoCampos">
+            <div>+</div>
+        </div>
+        <div class="form-group">
+            <select class="form-select" aria-label="Selecciona una tipo de Proveedor" id="tipoProveedor">
+              <option selected>Selecciona tipo de Proveedor</option>
+              <option value="Principal">Principal</option>
+              <option value="Acompañante">Acompañante</option>
+              <option value="Bebida">Bebida</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="number" id="precioProveedor" placeholder="Precio" step="any" class="form-control" />
+      </div>
+      <div class="form-group">
+        <select class="form-select" aria-label="Selecciona orientacion del Proveedor" id="orientacionProveedor">
+          <option selected>Selecciona orientacion del Proveedor</option>
+          <option value="1">Veggie</option>
+          <option value="2">Carne</option>
+          <option value="3">Sin gluten</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <select class="form-select" aria-label="Selecciona una tipo de Proveedor" id="cocineroProveedor">
+        <option selected>Selecciona cocinero</option>
+        <option value="1C">Gerardo Ramos</option>
+        <option value="2C">Bernardo Dior</option>
+      </select>
+    </div>  
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+  </div>
+  <!--Proveedor Proveedor-->

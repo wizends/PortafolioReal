@@ -10,6 +10,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
     />
+
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -63,14 +64,13 @@
     <main class="container-fluid">
       <div class="row">
         <div class="col-2 btn-group-vertical">
-          <button type="button" class="btn btn-primary" id="btnInicio">Inicio</button>
+          <button type="button" class="btn btn-primary" id="btnInicio">Cliente</button>
           <button type="button" class="btn btn-primary" id="btnBodega">Bodegas</button>
           <button type="button" class="btn btn-primary" id="btnMesa">Mesas</button>
           <button type="button" class="btn btn-primary" id="btnPlato">Platos</button>
-          <button type="button" class="btn btn-primary">Proveedores</button>
-          <button type="button" class="btn btn-primary">Fiananzas</button>
-          <button type="button" class="btn btn-primary">Cajas</button>
-          <button type="button" class="btn btn-primary">Informes</button>
+          <button type="button" class="btn btn-primary" id="btnProveedor">Proveedores</button>
+          <button type="button" class="btn btn-primary" id="btnCaja">Cajas</button>
+          <button type="button" class="btn btn-primary" id="btnInforme">Informes</button>
         </div>
        <!-- Cliente -->
 <div class="col-md-10 vis" id="tablaCliente">
@@ -263,13 +263,113 @@
       <option value="2C">Bernardo Dior</option>
     </select>
   </div>  
-  
-      <submit type="button" class="btn btn-primary">Agregar</submit>
+      <button type="submit" class="btn btn-primary">Agregar</button>
   </form>
 </div>
 <!--Plato Plato-->
 
+<!--Inicio seccion Proveedor-->
+<div class="inv" id="tablaProveedor">
+  <div>
+      <table class="table table-hover animated fadeInLeft">
+          <thead>
+              <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">PEDIDO</th>
+                  <th scope="col">FECHA DEL PEDIDO</th>
+                  <th scope="col">FECHA DE ENTREGA</th>
+              </tr>
+          </thead>
+          <tbody id="Proveedor">
+              <!-- Proveedor contenido -->
+          </tbody>
+      </table>
+  </div>
+</div>
+<div class="inv" id="formProveedor">
+  <!-- Proveedor Form -->
+  <div>
+    <form id="proveedorForm"  class="col-md-10 card card-body">
+      <div class="form-group">
+          <input type="text" id="idProveedor" placeholder="Id del Proveedor" class="form-control"
+              autofocus />
+      </div>
+      
+      <div id="pedidoCampos">
+          
+      </div>
+      <div class="form-group">
+        <div>
+          <input  type="text" id="pedidoProveedor" placeholder="Pedido" class="col  form-group animated fadeInLeft"/>
+          <input  type="number" id="cantidadProveedor" placeholder="Cantidad" class="col  form-group animated fadeInLeft"/>
+          <a class="btn btn-primary" id="agregarPedido">Agregar un pedido +</a></div>
+          <div class="col form-group">
+            <div>
+              <textarea id="contenidoCreado"></textarea ><a id="botonActualizar" class="btn btn-primary">Actualizar lista</a>
+            </div>
+            
+          </div>
+      </div>
+      <div class="form-group">
+        <label class="form-group">Fecha de entrega</label>
+        <input type="date" id="proveedorFechaEntrega" step="any"/>
+      </div>
+      <button type="submit" class="btn btn-primary">Agregar</button>
+  </form>
+</div>
 
+  </div>
+
+<!--Proveedor Proveedor-->
+
+<!--Inicio seccion Caja-->
+<div class="inv" id="tablaCaja">
+  <div>
+      <table class="table table-hover">
+          <thead>
+              <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">FECHA DE INICIO</th>
+                  <th scope="col">FECHA FINAL</th>
+                  <th scope="col">ESTADO</th>
+                  <th scope="col">SALDO INICIAL</th>
+                  <th scope="col">SALDO FINAL</th>
+                  <th scope="col">ENCARGADO</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+              </tr>
+          </thead>
+          <tbody id="caja">
+              <!-- Caja contenido -->
+          </tbody>
+      </table>
+  </div>
+</div>
+<div class="inv" id="formCerrar">
+
+</div>
+<div class="inv" id="formCaja">
+  <!-- Caja Form -->
+  <form id="cajaForm" class="card card-body">
+      <div class="form-group">
+          <input type="text" id="idCaja" placeholder="Id del Caja" class="form-control" autofocus/>
+      </div>
+      <div class="form-group">
+        <input type="number" id="saldoInicialCaja" placeholder="Saldo Inicial" step="any" class="form-control" />
+      </div>
+      <div class="form-group">
+        <input type="text" id="encargadoCaja" placeholder="Codigo Encargado" step="any" class="form-control" />
+      </div>
+      <button type="submit" class="btn btn-primary">Iniciar Caja</button>
+  </form>
+</div>
+<!--Caja Caja-->
+
+<!--Informes-->
+<div class="inv" id="contenidoInforme">
+  <a class="btn btn-primary" id="btnGenerarInforme">Descargar informe pdf</a>
+</div>
+<!--Fin de los informes-->
 
       </div>
     </main>
