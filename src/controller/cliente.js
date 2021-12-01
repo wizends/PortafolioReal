@@ -1,3 +1,4 @@
+const notifier = require('node-notifier');
 const oracledb = require("oracledb");
 const {obtenerConn} = require('../bd/database2')
 oracledb.outFormat = oracledb.OUT_FORMAT_ARRAY;
@@ -9,6 +10,13 @@ const createCliente =  async (cliente) => {
       const sql = 'BEGIN sp_insertarCliente(:id,:nombre,:apellido,:rut,:fecha_nac,:email); END;';
       conn.execute(sql,cliente);
       conn.commit();
+      //Notificacion 
+      notifier.notify({
+        title: 'Siglo 21',
+        message: 'Ingresaste un nuevo cliente!'
+      });
+      return result.rows[0];
+
           // Return the created Cliente
       return cliente;
       
@@ -28,6 +36,10 @@ const createCliente =  async (cliente) => {
     const conn = await obtenerConn();
     const result = await conn.execute("BEGIN sp_deleteCliente(:id); END;", id_cliente);
     conn.commit();
+    notifier.notify({
+      title: 'Siglo 21',
+      message: 'Borraste un cliente!'
+    });
     return result;
   };
   const getClienteByid = async (id_cliente) => {
@@ -42,6 +54,10 @@ const createCliente =  async (cliente) => {
     const result = await conn.execute(sql,cliente);
     conn.commit();
     console.log(result)
+    notifier.notify({
+      title: 'Siglo 21',
+      message: 'Cambiaste un cliente!'
+    });
     return cliente;
     
     //

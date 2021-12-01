@@ -1,9 +1,7 @@
 const { BrowserWindow} = require("electron");
-
 function createPrincipalView() {
   childWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    simpleFullscreen: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -15,7 +13,6 @@ function createPrincipalView() {
     childWindow.show();
   });
 }
-
 function createLoginView() {
   mainWindow = new BrowserWindow({
     width: 800,

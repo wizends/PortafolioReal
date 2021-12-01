@@ -1,8 +1,6 @@
 const { createPrincipalView, createLoginView } = require("./main");
-const { app, ipcMain } = require("electron");
+const { app, ipcMain, electron } = require("electron");
 
-
-require('./database');
 
 require('electron-reload')(__dirname);
 
@@ -12,3 +10,5 @@ app.whenReady().then(createLoginView);
 ipcMain.on("newPrincipalWindow", (event, arg) => {
     createPrincipalView();
   });
+
+  

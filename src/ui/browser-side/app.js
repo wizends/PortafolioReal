@@ -1,10 +1,11 @@
+const notifier = require('node-notifier');
 const main = require("../../main");
-const platoQuerys = require('../../controller/plato')
-const clienteQuerys = require('../../controller/cliente')
-const mesaQuerys = require('../../controller/mesa')
-const bodegaQuerys = require('../../controller/bodega')
-const ProveedorQuerys = require('../../controller/proveedores')
-const cajaQuerys = require('../../controller/caja')
+const platoQuerys = require("../../controller/plato");
+const clienteQuerys = require("../../controller/cliente");
+const mesaQuerys = require("../../controller/mesa");
+const bodegaQuerys = require("../../controller/bodega");
+const ProveedorQuerys = require("../../controller/proveedores");
+const cajaQuerys = require("../../controller/caja");
 
 const bodegaForm = document.querySelector("#bodegaForm");
 const bodegaNombre = document.querySelector("#nombre");
@@ -17,154 +18,162 @@ const bodegaDescription = document.querySelector("#description");
 const BodegaList = document.querySelector("#bodega");
 
 /*NAVEGACION*/
-const navegacionCliente = document.getElementById('btnInicio')
-const navegacionBodega = document.getElementById('btnBodega')
-const navegacionMesas = document.getElementById('btnMesa')
-const navegacionPlato = document.getElementById('btnPlato')
-const navegacionProveedor = document.getElementById('btnProveedor')
-const navegacionCaja = document.getElementById('btnCaja')
-const navegacionInforme = document.getElementById('btnInforme')
+const navegacionCliente = document.getElementById("btnInicio");
+const navegacionBodega = document.getElementById("btnBodega");
+const navegacionMesas = document.getElementById("btnMesa");
+const navegacionPlato = document.getElementById("btnPlato");
+const navegacionProveedor = document.getElementById("btnProveedor");
+const navegacionCaja = document.getElementById("btnCaja");
+const navegacionInforme = document.getElementById("btnInforme");
 
-const tablaBodega = document.getElementById('tablaBodega')
-const tablaCliente = document.getElementById('tablaCliente')
-const tablaMesa = document.getElementById('tablaMesa')
-const tablaPlato = document.getElementById('tablaPlato')
-const tablaProveedor = document.getElementById('tablaProveedor')
-const tablaCaja = document.getElementById('tablaCaja')
+const tablaBodega = document.getElementById("tablaBodega");
+const tablaCliente = document.getElementById("tablaCliente");
+const tablaMesa = document.getElementById("tablaMesa");
+const tablaPlato = document.getElementById("tablaPlato");
+const tablaProveedor = document.getElementById("tablaProveedor");
+const tablaCaja = document.getElementById("tablaCaja");
 
-const contenidoInforme = document.getElementById('contenidoInforme')
+const contenidoInforme = document.getElementById("contenidoInforme");
 
+const formBodega = document.getElementById("formBodega");
+const formCliente = document.getElementById("formCliente");
+const formMesa = document.getElementById("formMesa");
+const formPlato = document.getElementById("formPlato");
+const formProveedor = document.getElementById("formProveedor");
+const formCaja = document.getElementById("formCaja");
 
-const formBodega = document.getElementById('formBodega')
-const formCliente = document.getElementById('formCliente')
-const formMesa = document.getElementById('formMesa')
-const formPlato = document.getElementById('formPlato')
-const formProveedor = document.getElementById('formProveedor')
-const formCaja = document.getElementById('formCaja')
-
-navegacionCliente.addEventListener('click', async function(event){
-  if(tablaCliente != null){
-    tablaCliente.className = "col-md-10 animated fadeInLeft vis"
-    formCliente.className = "col-md-10 animated fadeInLeft vis"
-    tablaBodega.className = "inv"
-    formBodega.className = "inv"
-    tablaMesa.className = "inv"
-    formMesa.className = "inv"
-    formPlato.className = "inv"
-    tablaPlato.className = "inv"
-    tablaProveedor.className = "inv"
-    formProveedor.className = "inv"
-    formCaja.className = "inv"
-    tablaCaja.className = "inv"
+navegacionCliente.addEventListener("click", async function (event) {
+  if (tablaCliente != null) {
+    tablaCliente.className = "col-md-10 animated fadeInRight vis";
+    formCliente.className = "col-md-10 animated fadeInRight vis";
+    tablaBodega.className = "inv";
+    formBodega.className = "inv";
+    tablaMesa.className = "inv";
+    formMesa.className = "inv";
+    formPlato.className = "inv";
+    tablaPlato.className = "inv";
+    tablaProveedor.className = "inv";
+    formProveedor.className = "inv";
+    formCaja.className = "inv";
+    tablaCaja.className = "inv";
+    contenidoInforme.className = "inv";
   }
 });
 
-navegacionBodega.addEventListener('click' , async function(event){
-  if(tablaBodega != null){
-    tablaBodega.className = "col-md-10 animated fadeInLeft vis"
-    formBodega.className = "col-md-10 animated fadeInLeft vis"
-    tablaCliente.className = "inv"
-    formCliente.className = "inv"
-    tablaMesa.className = "inv"
-    formMesa.className = "inv"
-    formPlato.className = "inv"
-    tablaPlato.className = "inv"
-    tablaProveedor.className = "inv"
-    formProveedor.className = "inv"
-    formCaja.className = "inv"
-    tablaCaja.className = "inv"
+navegacionBodega.addEventListener("click", async function (event) {
+  if (tablaBodega != null) {
+    tablaBodega.className = "col-md-10 animated fadeInRight vis";
+    formBodega.className = "col-md-10 animated fadeInRight vis";
+    tablaCliente.className = "inv";
+    formCliente.className = "inv";
+    tablaMesa.className = "inv";
+    formMesa.className = "inv";
+    formPlato.className = "inv";
+    tablaPlato.className = "inv";
+    tablaProveedor.className = "inv";
+    formProveedor.className = "inv";
+    formCaja.className = "inv";
+    tablaCaja.className = "inv";
+    contenidoInforme.className = "inv";
   }
 });
 
-navegacionMesas.addEventListener('click', async function(event){
-  if(tablaMesa != null){
-    tablaMesa.className = "col-md-10 animated fadeInLeft vis"
-    formMesa.className = "col-md-10 animated fadeInLeft vis"
-    tablaCliente.className = "inv"
-    formCliente.className = "inv"
-    tablaBodega.className = "inv"
-    formBodega.className = "inv"
-    formPlato.className = "inv"
-    tablaPlato.className = "inv"
-    tablaProveedor.className = "inv"
-    formProveedor.className = "inv"
-    formCaja.className = "inv"
-    tablaCaja.className = "inv"
+navegacionMesas.addEventListener("click", async function (event) {
+  if (tablaMesa != null) {
+    tablaMesa.className = "col-md-10 animated fadeInRight vis";
+    formMesa.className = "col-md-10 animated fadeInRight vis";
+    tablaCliente.className = "inv";
+    formCliente.className = "inv";
+    tablaBodega.className = "inv";
+    formBodega.className = "inv";
+    formPlato.className = "inv";
+    tablaPlato.className = "inv";
+    tablaProveedor.className = "inv";
+    formProveedor.className = "inv";
+    formCaja.className = "inv";
+    tablaCaja.className = "inv";
+    contenidoInforme.className = "inv";
+  }
+});
+navegacionPlato.addEventListener("click", async function (event) {
+  if (tablaPlato != null) {
+    tablaPlato.className = "col-md-10 animated fadeInRight vis";
+    formPlato.className = "col-md-10 animated fadeInRight vis";
+    tablaMesa.className = "inv";
+    formMesa.className = "inv";
+    tablaCliente.className = "inv";
+    formCliente.className = "inv";
+    tablaBodega.className = "inv";
+    formBodega.className = "inv";
+    tablaProveedor.className = "inv";
+    formProveedor.className = "inv";
+    formCaja.className = "inv";
+    tablaCaja.className = "inv";
+    contenidoInforme.className = "inv";
+  }
+});
 
+navegacionProveedor.addEventListener("click", async function (event) {
+  if (tablaPlato != null) {
+    tablaPlato.className = "inv";
+    formPlato.className = "inv";
+    tablaMesa.className = "inv";
+    formMesa.className = "inv";
+    tablaCliente.className = "inv";
+    formCliente.className = "inv";
+    tablaBodega.className = "inv";
+    formBodega.className = "inv";
+    tablaProveedor.className = "col-md-10 animated fadeInRight vis";
+    formProveedor.className = " animated fadeInRight vis";
+    formCaja.className = "inv";
+    tablaCaja.className = "inv";
+    contenidoInforme.className = "inv";
   }
-})
-navegacionPlato.addEventListener('click', async function(event){
-  if(tablaPlato != null){
-    tablaPlato.className = "col-md-10 animated fadeInLeft vis"
-    formPlato.className = "col-md-10 animated fadeInLeft vis"
-    tablaMesa.className = "inv"
-    formMesa.className = "inv"
-    tablaCliente.className = "inv"
-    formCliente.className = "inv"
-    tablaBodega.className = "inv"
-    formBodega.className = "inv"
-    tablaProveedor.className = "inv"
-    formProveedor.className = "inv"
-    formCaja.className = "inv"
-    tablaCaja.className = "inv"
+});
+navegacionCaja.addEventListener("click", async function (event) {
+  if (tablaPlato != null) {
+    formCaja.className = "animated fadeInRight vis";
+    tablaCaja.className = "col-md-10 animated fadeInRight vis";
+    tablaPlato.className = "inv";
+    formPlato.className = "inv";
+    tablaMesa.className = "inv";
+    formMesa.className = "inv";
+    tablaCliente.className = "inv";
+    formCliente.className = "inv";
+    tablaBodega.className = "inv";
+    formBodega.className = "inv";
+    tablaProveedor.className = "inv";
+    formProveedor.className = "inv";
+    contenidoInforme.className = "inv";
   }
-})
+});
 
-navegacionProveedor.addEventListener('click', async function(event){
-  if(tablaPlato != null){
-    tablaPlato.className = "inv"
-    formPlato.className = "inv"
-    tablaMesa.className = "inv"
-    formMesa.className = "inv"
-    tablaCliente.className = "inv"
-    formCliente.className = "inv"
-    tablaBodega.className = "inv"
-    formBodega.className = "inv"
-    tablaProveedor.className = "col-md-10 animated fadeInLeft vis"
-    formProveedor.className = " animated fadeInLeft vis"
-    formCaja.className = "inv"
-    tablaCaja.className = "inv"
+navegacionInforme.addEventListener("click", async function (event) {
+  if (tablaPlato != null) {
+    tablaPlato.className = "inv";
+    formPlato.className = "inv";
+    tablaMesa.className = "inv";
+    formMesa.className = "inv";
+    tablaCliente.className = "inv";
+    formCliente.className = "inv";
+    tablaBodega.className = "inv";
+    formBodega.className = "inv";
+    tablaProveedor.className = "inv";
+    formProveedor.className = "inv";
+    formCaja.className = "inv";
+    tablaCaja.className = "inv";
+    contenidoInforme.className = "col-md-10 animated fadeInRight vis";
   }
-})
-navegacionCaja.addEventListener('click', async function(event){
-  if(tablaPlato != null){
-    formCaja.className = "animated fadeInLeft vis"
-    tablaCaja.className = "col-md-10 animated fadeInLeft vis"
-    tablaPlato.className = "inv"
-    formPlato.className = "inv"
-    tablaMesa.className = "inv"
-    formMesa.className = "inv"
-    tablaCliente.className = "inv"
-    formCliente.className = "inv"
-    tablaBodega.className = "inv"
-    formBodega.className = "inv"
-    tablaProveedor.className = "inv"
-    formProveedor.className = "inv"
+});
 
-  }
-})
-
-navegacionInforme.addEventListener('click', async function(event){
-  if(tablaPlato != null){
-    tablaPlato.className = "inv"
-    formPlato.className = "inv"
-    tablaMesa.className = "inv"
-    formMesa.className = "inv"
-    tablaCliente.className = "inv"
-    formCliente.className = "inv"
-    tablaBodega.className = "inv"
-    formBodega.className = "inv"
-    tablaProveedor.className = "inv"
-    formProveedor.className = "inv"
-    formCaja.className = "inv"
-    tablaCaja.className = "inv"
-    contenidoInforme.className = "col-md-10 animated fadeInLeft vis"
-  }
+const formatter = new Intl.NumberFormat('es-CL', {
+  style: 'currency',
+  currency: 'CLP',
+  minimumFractionDigits: 0
 })
 /*FIN NAVEGACION*/
 
 /*CLIENTE CRUD */
-
 
 const clienteForm = document.querySelector("#clienteForm");
 const clienteNombre = document.querySelector("#clienteNombre");
@@ -175,7 +184,6 @@ const clienteFecNac = document.querySelector("#fecnac");
 const clienteEmail = document.querySelector("#email");
 const btnCliente = document.querySelector("#btnCliente");
 const clienteList = document.querySelector("#cliente");
-
 
 let cliente = [];
 
@@ -192,8 +200,8 @@ const deleteCliente = async (id_cliente) => {
 
 const editCliente = async (id_cliente) => {
   const cliente = await clienteQuerys.getClienteByid([id_cliente]);
- 
-  clienteNombre.value =  cliente[0];
+
+  clienteNombre.value = cliente[0];
   clienteApellido.value = cliente[1];
   clienteRut.value = cliente[2];
   clienteFecNac.value = cliente[3];
@@ -201,21 +209,19 @@ const editCliente = async (id_cliente) => {
 
   editingStatus = true;
   ediotClienteId = id_cliente;
-  
-  
 };
 
 clienteForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   try {
     const cliente = [
-      id_cliente =clienteId.value ,
-      nombres = clienteNombre.value ,
-      apellidos = clienteApellido.value ,
-      rut = clienteRut.value ,
-      fecha_nac = clienteFecNac.value ,
-      email = clienteEmail.value 
-    ] 
+      (id_cliente = clienteId.value),
+      (nombres = clienteNombre.value),
+      (apellidos = clienteApellido.value),
+      (rut = clienteRut.value),
+      (fecha_nac = clienteFecNac.value),
+      (email = clienteEmail.value),
+    ];
     e.preventDefault();
 
     if (!editingStatus) {
@@ -226,7 +232,6 @@ clienteForm.addEventListener("submit", async (e) => {
       cliente.shift();
       const clienteUpdated = await clienteQuerys.updateCliente(cliente);
       console.log(clienteUpdated);
-      
 
       // Reset
       editingStatus = false;
@@ -236,9 +241,7 @@ clienteForm.addEventListener("submit", async (e) => {
     clienteForm.reset();
     clienteNombre.focus();
     getCliente();
-
-  }
-  catch (error) {
+  } catch (error) {
     console.log(error);
   }
 });
@@ -265,8 +268,6 @@ function renderCliente(tasks) {
   });
 }
 /*FIN CLIENTE CRUD*/
-
-
 
 /*Bodega CRUD*/
 let bodega = [];
@@ -298,12 +299,12 @@ bodegaForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const bodega = [
-      sku = bodegaSku.value,
-      marca = bodegaMarca.value,
-      stock = parseInt(bodegaStock.value),
-      detalle = bodegaDetalle.value,
-      nombre = bodegaNombre.value,
-      id_user = "1B"
+      (sku = bodegaSku.value),
+      (marca = bodegaMarca.value),
+      (stock = parseInt(bodegaStock.value)),
+      (detalle = bodegaDetalle.value),
+      (nombre = bodegaNombre.value),
+      (id_user = "1B"),
     ];
     if (!editingStatus) {
       const savedBodega = await bodegaQuerys.createBodega(bodega);
@@ -312,9 +313,9 @@ bodegaForm.addEventListener("submit", async (e) => {
       /*bodega.push(editBodega);
       bodega.shift();*/
       bodega.shift();
-      bodega.unshift(editbodegaSku)
+      bodega.unshift(editbodegaSku);
       const bodegaUpdated = await bodegaQuerys.updateBodega(bodega);
-      console.log(bodega)
+      console.log(bodega);
       console.log(bodegaUpdated);
 
       // Reset
@@ -330,9 +331,7 @@ bodegaForm.addEventListener("submit", async (e) => {
   }
 });
 
-btnBodega.addEventListener("click", async (e) =>{
-  
-})
+btnBodega.addEventListener("click", async (e) => {});
 
 function renderBodega(tasks) {
   BodegaList.innerHTML = "";
@@ -355,12 +354,7 @@ function renderBodega(tasks) {
   });
 }
 
-
 /*FIN BODEGA CRUD */
-
-
-
-
 
 /*MESA CRUD*/
 const mesaForm = document.querySelector("#mesaForm");
@@ -389,7 +383,7 @@ const editMesa = async (mesaId) => {
   mesaCamarero.value = mesa[0];
   mesaSillas.value = parseInt(mesa[1]);
   mesaZonas.value = mesa[2];
-  
+
   editingStatus = true;
   ediotMesaId = mesaId;
 };
@@ -399,11 +393,11 @@ mesaForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const mesa = [
-      id = mesaId.value,
-      camarero = mesaCamarero.value,
-      sillas = mesaSillas.value,
-      zona = mesaZonas.value,
-      id_garzon = '1G'
+      (id = mesaId.value),
+      (camarero = mesaCamarero.value),
+      (sillas = mesaSillas.value),
+      (zona = mesaZonas.value),
+      (id_garzon = "1G"),
     ];
 
     if (!editingStatus) {
@@ -411,8 +405,8 @@ mesaForm.addEventListener("submit", async (e) => {
       console.log(savedMesa);
     } else {
       mesa.shift();
-      mesa.unshift(ediotMesaId)
-      console.log(mesa)
+      mesa.unshift(ediotMesaId);
+      console.log(mesa);
       const mesaUpdated = await mesaQuerys.updateMesa(mesa);
       console.log(mesaUpdated);
 
@@ -450,7 +444,6 @@ function renderMesa(tasks) {
 
 /* FIN MESA CRUD*/
 
-
 /*CRUD plato*/
 const platoForm = document.querySelector("#platoForm");
 const idPlato = document.querySelector("#idPlato");
@@ -460,7 +453,7 @@ const precioPlato = document.querySelector("#precioPlato");
 const tipoPlato = document.querySelector("#tipoPlato");
 const cocineroPlato = document.querySelector("#cocineroPlato");
 const platoList = document.querySelector("#plato");
-const orientacionPlato = document.querySelector("#orientacionPlato")
+const orientacionPlato = document.querySelector("#orientacionPlato");
 
 let plato = [];
 
@@ -483,7 +476,7 @@ const editPlato = async (platoId) => {
   precioPlato.value = plato[3];
   orientacionPlato.value = plato[4];
   cocineroPlato.value = plato[5];
-  
+
   editingStatus = true;
   ediotPlatoId = platoId;
 };
@@ -491,25 +484,25 @@ const editPlato = async (platoId) => {
 platoForm.addEventListener("submit", async (e) => {
   try {
     e.preventDefault();
-    
+
     const plato = [
-      platoID = idPlato.value,
-      platoNombre = nombrePlato.value,
-      platoStock = parseInt(stockPlato.value),
-      platoTipo = tipoPlato.value,
-      platoPrecio = parseInt(precioPlato.value),
-      platoOrientacion = orientacionPlato.value,
-      platoCocinero = cocineroPlato.value
+      (platoID = idPlato.value),
+      (platoNombre = nombrePlato.value),
+      (platoStock = parseInt(stockPlato.value)),
+      (platoTipo = tipoPlato.value),
+      (platoPrecio = parseInt(precioPlato.value)),
+      (platoOrientacion = orientacionPlato.value),
+      (platoCocinero = cocineroPlato.value),
     ];
     e.preventDefault();
     if (!editingStatus) {
-      console.log(plato)
+      console.log(plato);
       const savedPlato = await platoQuerys.createPlato(plato);
       console.log(savedPlato);
     } else {
       plato.shift();
-      plato.unshift(ediotPlatoId)
-      console.log(plato)
+      plato.unshift(ediotPlatoId);
+      console.log(plato);
       const platoUpdated = await platoQuerys.updatePlato(plato);
       console.log(platoUpdated);
 
@@ -534,7 +527,7 @@ function renderPlato(tasks) {
           <td>${t[1]}</td>
           <td>${t[2]}</td>
           <td>${t[3]}</td>
-          <td>${t[4]}</td>
+          <td>${formatter.format(t[4])}</td>
           <td><button class="btn btn-danger btn-sm" onclick="deletePlato('${t[0]}')">
           DELETE
         </button>
@@ -559,7 +552,7 @@ const ProveedorList = document.querySelector("#Proveedor");
 const agregarPedido = document.querySelector("#agregarPedido");
 const contenidoCreado = document.querySelector("#contenidoCreado");
 const ProveedorFechaEntrega = document.querySelector("#proveedorFechaEntrega");
-const botonActualizar = document.querySelector("#botonActualizar")
+const botonActualizar = document.querySelector("#botonActualizar");
 
 let proveedor = [];
 
@@ -578,7 +571,7 @@ const editProveedor = async (proveedorId) => {
   const proveedor = await ProveedorQuerys.getProveedorById([proveedorId]);
 
   contenidoCreado.value = proveedor[0];
-  ProveedorFechaEntrega.value = proveedor[2];  
+  ProveedorFechaEntrega.value = proveedor[2];
   editingStatus = true;
   ediotProveedorId = proveedorId;
 };
@@ -587,39 +580,40 @@ let dd = today.getDate();
 let mm = today.getMonth() + 1; //January is 0!
 let yyyy = today.getFullYear();
 if (dd < 10) {
-  dd = '0' + dd;
+  dd = "0" + dd;
 }
 if (mm < 10) {
-  mm = '0' + mm;
+  mm = "0" + mm;
 }
-today = yyyy + '-' + mm + '-' + dd;
+today = yyyy + "-" + mm + "-" + dd;
 
 proveedorForm.addEventListener("submit", async (e) => {
   try {
     e.preventDefault();
-    
-    pedidoFinal = contenidoCreado.value.split(',')
-    pedidoFinal.filter(String)
+
+    pedidoFinal = contenidoCreado.value.split(",");
+    pedidoFinal.filter(String);
     const proveedor = [
-      proveedorID = idProveedor.value,
-      proveedorPedido = contenidoCreado.value,
-      proveedorFecha = today,
-      proveedorFechaEntrega = ProveedorFechaEntrega.value,
-      proveedorFinanza = "1F"
+      (proveedorID = idProveedor.value),
+      (proveedorPedido = contenidoCreado.value),
+      (proveedorFecha = today),
+      (proveedorFechaEntrega = ProveedorFechaEntrega.value),
+      (proveedorFinanza = "1F"),
     ];
-    
+
     e.preventDefault();
     if (!editingStatus) {
       const savedProveedor = await ProveedorQuerys.createProveedor(proveedor);
       console.log(savedProveedor);
     } else {
-      proveedor.unshift(ediotProveedorId)
-      const proveedorFinal = proveedor.filter(String)
-      
-      console.log(proveedorFinal)
-      const ProveedorUpdated = await ProveedorQuerys.updateProveedor(proveedorFinal);
+      proveedor.unshift(ediotProveedorId);
+      const proveedorFinal = proveedor.filter(String);
+
+      console.log(proveedorFinal);
+      const ProveedorUpdated = await ProveedorQuerys.updateProveedor(
+        proveedorFinal
+      );
       console.log(ProveedorUpdated);
-      
 
       // Reset
       editingStatus = false;
@@ -633,34 +627,28 @@ proveedorForm.addEventListener("submit", async (e) => {
   }
 });
 
-
 let pedidoFinal = [];
-agregarPedido.addEventListener('click', async(e) =>{
+agregarPedido.addEventListener("click", async (e) => {
   e.preventDefault();
-  
 
   if (pedidoProveedor.value == "" || cantidadProveedor.value == "()") {
     const response = confirm("No hay elementos");
-  }else{
-    contenidoCreado.value += pedidoProveedor.value + "("+cantidadProveedor.value+"),"
-    pedidoFinal = contenidoCreado.value.split(',')
-  pedidoFinal.pop();
+  } else {
+    contenidoCreado.value +=
+      pedidoProveedor.value + "(" + cantidadProveedor.value + "),";
+    pedidoFinal = contenidoCreado.value.split(",");
+    pedidoFinal.pop();
   }
-  pedidoFinal.filter(String)
+  pedidoFinal.filter(String);
   pedidoProveedor.value = "";
   cantidadProveedor.value = "";
-  console.log(pedidoFinal)
-  
+  console.log(pedidoFinal);
+});
 
-})
-
-botonActualizar.addEventListener('click', async(e) =>{
-  pedidoFinal = contenidoCreado.value.split(',')
-  console.log(pedidoFinal.filter(String))
-})
-
-
-
+botonActualizar.addEventListener("click", async (e) => {
+  pedidoFinal = contenidoCreado.value.split(",");
+  console.log(pedidoFinal.filter(String));
+});
 
 function renderProveedor(tasks) {
   ProveedorList.innerHTML = "";
@@ -694,63 +682,59 @@ const saldoInicialCaja = document.querySelector("#saldoInicialCaja");
 const cajaList = document.querySelector("#caja");
 const formCerrar = document.querySelector("#formCerrar");
 
-
 let caja = [];
 
 let ediotCajaId;
 
 const cerrarCaja = async (cajaId) => {
-  formCaja.className = "inv"
-  formCerrar.className = "vis card card-body"
-  formCerrar.innerHTML += `<input type="number" id="saldoFinalCaja" placeholder="Saldo Final" step="any" class="form-control" /><a class="btn btn-secondary btn-sm" onClick="enviarCajaCerrada('${cajaId}')">Ingresar</a>`
+  formCaja.className = "inv";
+  formCerrar.className = "vis card card-body";
+  formCerrar.innerHTML += `<input type="number" id="saldoFinalCaja" placeholder="Saldo Final" step="any" class="form-control" /><a class="btn btn-secondary btn-sm" onClick="enviarCajaCerrada('${cajaId}')">Ingresar</a>`;
 };
-const enviarCajaCerrada = async(id) =>{
+const enviarCajaCerrada = async (id) => {
   const saldoFinal = document.querySelector("#saldoFinalCaja");
   cerrar = [
-    cajaId = id,
-    fechaFinalCaja = today2,
-    saldoFinalCaja = parseInt(saldoFinal.value)
-  ]
+    (cajaId = id),
+    (fechaFinalCaja = today2),
+    (saldoFinalCaja = parseInt(saldoFinal.value)),
+  ];
   cajaQuerys.cerrarCaja(cerrar);
   getCaja();
-  console.log(cerrar)
-  formCaja.className = "animated fadeInLeft vis"
-  formCerrar.className = "inv"
-}
-
+  console.log(cerrar);
+  formCaja.className = "animated fadeInRight vis";
+  formCerrar.className = "inv";
+};
 
 let today2 = new Date();
-    let dia = today2.getDate();
-    let mes = today2.getMonth();
-    let year = today2.getFullYear();
-    let hh = today2.getHours();
-    let min = today2.getMinutes();
-    today2 = year + '-' + mes + '-' + dia + ' ' + hh + ':' + min;
-
+let dia = today2.getDate();
+let mes = today2.getMonth();
+let year = today2.getFullYear();
+let hh = today2.getHours();
+let min = today2.getMinutes();
+today2 = year + "-" + mes + "-" + dia + " " + hh + ":" + min;
 
 cajaForm.addEventListener("submit", async (e) => {
   try {
     e.preventDefault();
-    
-    
+
     const caja = [
-      cajaId = idCaja.value,
-      cajaFechaInicial = today2,
-      cajaFechaFinal = "Caja en proceso",
-      cajaEstado = "Abierta",
-      cajaSaldoInicial = parseInt(saldoInicialCaja.value),
-      cajaSaldoFinal = 0,
-      cajaEncargado = codigoCaja.value
+      (cajaId = idCaja.value),
+      (cajaFechaInicial = today2),
+      (cajaFechaFinal = "Caja en proceso"),
+      (cajaEstado = "Abierta"),
+      (cajaSaldoInicial = parseInt(saldoInicialCaja.value)),
+      (cajaSaldoFinal = 0),
+      (cajaEncargado = codigoCaja.value),
     ];
-    
+
     e.preventDefault();
     if (!editingStatus) {
       const savedCaja = await cajaQuerys.createCaja(caja);
       console.log(savedCaja);
     } else {
       caja.shift();
-      caja.unshift(ediotCajaId)
-      console.log(caja)
+      caja.unshift(ediotCajaId);
+      console.log(caja);
       const cajaUpdated = await cajaQuerys.updateCaja(caja);
       console.log(cajaUpdated);
 
@@ -766,7 +750,9 @@ cajaForm.addEventListener("submit", async (e) => {
     console.log(error);
   }
 });
+
 function renderCaja(tasks) {
+  
   cajaList.innerHTML = "";
   tasks.forEach((t) => {
     cajaList.innerHTML += `
@@ -775,8 +761,8 @@ function renderCaja(tasks) {
           <td>${t[1]}</td>
           <td>${t[2]}</td>
           <td>${t[3]}</td>
-          <td>${t[4]}</td>
-          <td>${t[5]}</td>
+          <td>${formatter.format(t[4])}</td>
+          <td>${formatter.format(t[5])}</td>
           <td>${t[6]}</td>
           <td><button class="btn btn-danger btn-sm" onclick="cerrarCaja('${t[0]}')">
           Cerrar Caja
@@ -791,20 +777,132 @@ function renderCaja(tasks) {
 FIN CRUD Caja 
 
 
- /*Informes*/ 
- 
+ /*Informes*/
+
+ const { jsPDF } = require("jspdf");
+ const autoTable  = require("jspdf-autotable")
+
+const generarInforme = document.getElementById("btnGenerarInforme");
+
+generarInforme.addEventListener("click", async (e) => {
+  const contenido = await clienteQuerys.getCliente();
+  const doc = new jsPDF({
+    orientation: "p",
+    unit: "mm",
+    format: "a4",
+    putOnlyUsedFonts: true,
+  });
+  doc.autoTable({ html: '#clienteCabecera' });
+  doc.save("Cliente.pdf");
+  
+  notifier.notify({
+    title: 'Siglo 21',
+    message: 'Pdf creado!'
+  });
+});
+
+const generarInformeBodega = document.getElementById("btnGenerarInformeBodega");
+generarInformeBodega.addEventListener("click", async (e) => {
+  const contenido = await bodegaQuerys.getBodega();
+  const doc = new jsPDF({
+    orientation: "p",
+    unit: "mm",
+    format: "a4",
+    putOnlyUsedFonts: true,
+  });
+  doc.autoTable({ html: '#cabeceraBodega' });
+  doc.save("Bodega.pdf");
+  
+  notifier.notify({
+    title: 'Siglo 21',
+    message: 'Pdf creado!'
+  });
+});
+
+const generarInformeMesa = document.getElementById("btnGenerarInformeMesa");
+generarInformeMesa.addEventListener("click", async (e) => {
+  const contenido = await mesaQuerys.getMesa();
+  const doc = new jsPDF({
+    orientation: "p",
+    unit: "mm",
+    format: "a4",
+    putOnlyUsedFonts: true,
+  });
+  doc.autoTable({ html: '#cabeceraMesa' });
+  doc.save("Mesa.pdf");
+  
+  notifier.notify({
+    title: 'Siglo 21',
+    message: 'Pdf creado!'
+  });
+});
+
+const generarInformePlato = document.getElementById("btnGenerarInformePlato");
+generarInformePlato.addEventListener("click", async (e) => {
+  const contenido = await platoQuerys.getPlato();
+  const doc = new jsPDF({
+    orientation: "p",
+    unit: "mm",
+    format: "a4",
+    putOnlyUsedFonts: true,
+  });
+  doc.autoTable({ html: '#cabeceraPlato' });
+  doc.save("Plato.pdf");
+  
+  notifier.notify({
+    title: 'Siglo 21',
+    message: 'Pdf creado!'
+  });
+});
+
+const generarInformeProveedor = document.getElementById("btnGenerarInformeProveedor");
+generarInformeProveedor.addEventListener("click", async (e) => {
+  const contenido = await ProveedorQuerys.getProveedor();
+  const doc = new jsPDF({
+    orientation: "p",
+    unit: "mm",
+    format: "a4",
+    putOnlyUsedFonts: true,
+  });
+  doc.autoTable({ html: '#cabeceraProveedor' });
+  doc.save("Proveedor.pdf");
+  
+  notifier.notify({
+    title: 'Siglo 21',
+    message: 'Pdf creado!'
+  });
+});
+
+const generarInformeCaja = document.getElementById("btnGenerarInformeCaja");
+generarInformeCaja.addEventListener("click", async (e) => {
+  const contenido = await cajaQuerys.getCaja();
+  const doc = new jsPDF({
+    orientation: "p",
+    unit: "mm",
+    format: "a4",
+    putOnlyUsedFonts: true,
+  });
+  doc.autoTable({ html: '#cabeceraCaja' });
+  doc.save("Caja.pdf");
+  
+  notifier.notify({
+    title: 'Siglo 21',
+    message: 'Pdf creado!'
+  });
+});
+
 
 /*Fin de los informes*/
 
-const getCaja = async () =>{
+const getCaja = async () => {
   caja = await cajaQuerys.getCaja();
   renderCaja(caja);
-}
+};
 
-const getProveedor = async () =>{
+const getProveedor = async () => {
   proveedor = await ProveedorQuerys.getProveedor();
   renderProveedor(proveedor);
-}
+};
 
 const getCliente = async () => {
   cliente = await clienteQuerys.getCliente();
@@ -816,15 +914,14 @@ const getBodega = async () => {
   renderBodega(bodega);
 };
 
-const getMesa = async () =>{
+const getMesa = async () => {
   mesa = await mesaQuerys.getMesa();
   renderMesa(mesa);
-}
-const getPlato = async () =>{
+};
+const getPlato = async () => {
   plato = await platoQuerys.getPlato();
   renderPlato(plato);
-}
-
+};
 
 async function init() {
   getCaja();

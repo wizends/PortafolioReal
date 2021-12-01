@@ -126,3 +126,6 @@ html, body{
   width: 250px;
   resize: none;
 }
+.imagenPdf{
+  max-width: 150px;
+}

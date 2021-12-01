@@ -1,3 +1,4 @@
+const notifier = require('node-notifier');
 const oracledb = require("oracledb");
 const {obtenerConn} = require('../bd/database2')
 oracledb.outFormat = oracledb.OUT_FORMAT_ARRAY;
@@ -11,10 +12,10 @@ const createMesa = async (mesa) => {
       conn.commit();
   
       // Notify the User
-      new Notification({
-        title: "Electron Mysql",
-        body: "New mesa Saved Successfully",
-      }).show();
+      notifier.notify({
+        title: 'Siglo 21',
+        message: 'Ingresaste una mesa!'
+      });
   
       // Return the created mesa
       return mesa;
@@ -34,6 +35,10 @@ const createMesa = async (mesa) => {
     const sql = "BEGIN sp_deletemesa(:id); END;"
     const result = await conn.execute(sql,mesaId);
     conn.commit();  
+    notifier.notify({
+      title: 'Siglo 21',
+      message: 'Borraste una mesa!'
+    });
     return result;
   };
   
@@ -48,6 +53,10 @@ const createMesa = async (mesa) => {
     const sql = 'BEGIN sp_updateMesa(:id,:garzon,:sillas,:zona,:id_garzon); END;';
     const result = await conn.execute(sql,mesa);
     conn.commit();
+    notifier.notify({
+      title: 'Siglo 21',
+      message: 'Hiciste cambios en las mesas!'
+    });
     console.log(result)
   };
 

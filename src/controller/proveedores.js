@@ -1,4 +1,4 @@
-
+const notifier = require('node-notifier');
 const oracledb = require("oracledb");
 const {obtenerConn} = require('../bd/database2')
 oracledb.outFormat = oracledb.OUT_FORMAT_ARRAY;
@@ -12,10 +12,10 @@ const createProveedor = async (proveedor) => {
       conn.commit();
   
       // Notify the User
-     let notificacion = new Notification({
-        title: "Electron Mysql",
-        body: "New Proveedor Saved Successfully"
-      }).show();
+      notifier.notify({
+        title: 'Siglo 21',
+        message: 'Ingresaste un pedido al proveedor!'
+      });
   
       // Return the created Proveedor
       return proveedor;

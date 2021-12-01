@@ -1,3 +1,4 @@
+const notifier = require('node-notifier');
 const oracledb = require("oracledb");
 const {obtenerConn} = require('../bd/database2')
 oracledb.outFormat = oracledb.OUT_FORMAT_ARRAY;
@@ -11,10 +12,10 @@ const createPlato = async (plato) => {
       conn.commit();
   
       // Notify the User
-     let notificacion = new Notification({
-        title: "Electron Mysql",
-        body: "New Plato Saved Successfully"
-      }).show();
+      notifier.notify({
+        title: 'Siglo 21',
+        message: 'Ingresaste un plato!'
+      });
   
       // Return the created Plato
       return plato;
@@ -33,7 +34,11 @@ const createPlato = async (plato) => {
     const conn = await obtenerConn();
     const sql = "BEGIN sp_deletePlato(:id); END;"
     const result = await conn.execute(sql,platoId);
-    conn.commit();  
+    conn.commit(); 
+    notifier.notify({
+      title: 'Siglo 21',
+      message: 'Borraste un plato!'
+    }); 
     return result;
   };
   
@@ -48,6 +53,10 @@ const createPlato = async (plato) => {
     const sql = 'BEGIN sp_updateplato(:id,:nombre,:stock,:tipo,:precio,:menuid,:cocinaid); END;';
     const result = await conn.execute(sql,plato);
     conn.commit();
+    notifier.notify({
+      title: 'Siglo 21',
+      message: 'Hiciste cambios en los platos!'
+    });
     console.log(result)
   };
 

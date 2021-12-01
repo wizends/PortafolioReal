@@ -1,3 +1,4 @@
+const notifier = require('node-notifier');
 const oracledb = require("oracledb");
 const {obtenerConn} = require('../bd/database2')
 oracledb.outFormat = oracledb.OUT_FORMAT_ARRAY;
@@ -11,10 +12,10 @@ const createCaja = async (caja) => {
       conn.commit();
   
       // Notify the User
-     let notificacion = new Notification({
-        title: "Electron Mysql",
-        body: "New Caja Saved Successfully"
-      }).show();
+      notifier.notify({
+        title: 'Siglo 21',
+        message: 'Caja abierta!'
+      });
   
       // Return the created Caja
       return caja;
