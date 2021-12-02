@@ -15,13 +15,13 @@ const createCliente =  async (cliente) => {
         title: 'Siglo 21',
         message: 'Ingresaste un nuevo cliente!'
       });
-      return result.rows[0];
 
           // Return the created Cliente
       return cliente;
       
     } catch (error) {
-      console.log(error);
+      console.log(error)
+      
     }
   };
   const getCliente = async () => {

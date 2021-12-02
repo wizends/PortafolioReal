@@ -211,39 +211,83 @@ const editCliente = async (id_cliente) => {
   ediotClienteId = id_cliente;
 };
 
+
+
+
+let fechaMayor18 = new Date();
+let hoy = new Date();
+let dias = fechaMayor18.getDate();
+let meses = fechaMayor18.getMonth();
+let years = fechaMayor18.getFullYear()-18;
+fechaMayor18 = years + "-" + meses + "-" + dias + " " ;
+console.log(fechaMayor18)
+
+const { validateRUT} = require('validar-rut')
+
 clienteForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  try {
-    const cliente = [
-      (id_cliente = clienteId.value),
-      (nombres = clienteNombre.value),
-      (apellidos = clienteApellido.value),
-      (rut = clienteRut.value),
-      (fecha_nac = clienteFecNac.value),
-      (email = clienteEmail.value),
-    ];
-    e.preventDefault();
+  if ((clienteNombre.value).length < 20 || (clienteApellido.value).legnth < 20) {
+    if (validateRUT(clienteRut.value) == true ) {
+     
+      try {
+        const cliente = [
+          (id_cliente = clienteId.value),
+          (nombres = clienteNombre.value),
+          (apellidos = clienteApellido.value),
+          (rut = clienteRut.value),
+          (fecha_nac = clienteFecNac.value),
+          (email = clienteEmail.value),
+        ];
+        e.preventDefault();
+    
+        if (!editingStatus) {
+          if (clienteFecNac.value != fechaMayor18) {
+            if (clienteId.value !== "" && clienteApellido.value !== "" && clienteRut.value !== "" && clienteFecNac.value !== "" && clienteEmail.value !== "") {
+              const savedCliente = await clienteQuerys.createCliente(cliente);
+            }else{
+                notifier.notify({
+                  title: 'Siglo 21',
+                  message: 'Falta llenar campos'
+                });
+                console.log(savedCliente);
+              }
+          }else{
+            notifier.notify({
+              title: 'Siglo 21',
+              message: 'No eres mayor de 18 años'+clienteFecNac.value
+            });
+          }
+        } else {
+          cliente.push(ediotClienteId);
+          cliente.shift();
+          const clienteUpdated = await clienteQuerys.updateCliente(cliente);
+          console.log(clienteUpdated);
+    
+          // Reset
+          editingStatus = false;
+          ediotClienteId = "";
+        }
+    
+        clienteForm.reset();
+        clienteNombre.focus();
+        getCliente();
+      } catch (error) {
+        console.log(error);
+      }
+    
+  }else{
+    notifier.notify({
+      title: 'Siglo 21',
+      message: 'Rut mal ingresado(11999000-2)'
+    }); 
+}
+   }else{
+    notifier.notify({
+      title: 'Siglo 21',
+      message: 'Largo de nombre y apellido superan el limite(20)'
+    });}
 
-    if (!editingStatus) {
-      const savedCliente = await clienteQuerys.createCliente(cliente);
-      console.log(savedCliente);
-    } else {
-      cliente.push(ediotClienteId);
-      cliente.shift();
-      const clienteUpdated = await clienteQuerys.updateCliente(cliente);
-      console.log(clienteUpdated);
-
-      // Reset
-      editingStatus = false;
-      ediotClienteId = "";
-    }
-
-    clienteForm.reset();
-    clienteNombre.focus();
-    getCliente();
-  } catch (error) {
-    console.log(error);
-  }
+  
 });
 
 function renderCliente(tasks) {
