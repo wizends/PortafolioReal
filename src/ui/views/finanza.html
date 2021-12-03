@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siglo XXI</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/app.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <img class="navbar-brand" style="width: 100px;" src="../../imagenes/logo.jpeg"></img>
+      <div class="collapse navbar-collapse" id="navbarColor03">
+      </div>
+    </div>
+  </nav>
+  <main class="container-fluid">
+    <div class="contenedor row">
+      <div class="col-2 btn-group-vertical">
+        <button type="button" class="btn btn-primary" id="btnCaja">Caja</button>
+      </div>
+     
+      <!--Inicio seccion Caja-->
+      <div class="col-md-10 vis" id="tablaCaja">
+        <div>
+          <table id="cabeceraCaja" class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">FECHA DE INICIO</th>
+                <th scope="col">FECHA FINAL</th>
+                <th scope="col">ESTADO</th>
+                <th scope="col">SALDO INICIAL</th>
+                <th scope="col">SALDO FINAL</th>
+                <th scope="col">ENCARGADO</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody id="caja">
+              <!-- Caja contenido -->
+            </tbody>
+          </table>
+        </div>
+        <div class="inv" id="formCerrar">
+
+        </div>
+        <div class="vis" id="formCaja">
+          <!-- Caja Form -->
+          <form id="cajaForm" class="card card-body">
+            <div class="form-group">
+              <input type="text" id="idCaja" placeholder="Id del Caja" class="form-control" autofocus />
+            </div>
+            <div class="form-group">
+              <input type="number" id="saldoInicialCaja" placeholder="Saldo Inicial" step="any" class="form-control" />
+            </div>
+            <div class="form-group">
+              <input type="text" id="encargadoCaja" placeholder="Codigo Encargado" step="any" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Iniciar Caja</button>
+          </form>
+        </div>
+      </div>
+      <!--Caja Caja-->
+
+    </div>
+  </main>
+  <script src="../browser-side/finanza.js"></script>
+</body>
+
+</html>

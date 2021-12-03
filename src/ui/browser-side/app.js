@@ -220,7 +220,7 @@ let dias = fechaMayor18.getDate();
 let meses = fechaMayor18.getMonth();
 let years = fechaMayor18.getFullYear()-18;
 fechaMayor18 = years + "-" + meses + "-" + dias + " " ;
-console.log(fechaMayor18)
+
 
 const { validateRUT} = require('validar-rut')
 
@@ -241,7 +241,7 @@ clienteForm.addEventListener("submit", async (e) => {
         e.preventDefault();
     
         if (!editingStatus) {
-          if (clienteFecNac.value != fechaMayor18) {
+        
             if (clienteId.value !== "" && clienteApellido.value !== "" && clienteRut.value !== "" && clienteFecNac.value !== "" && clienteEmail.value !== "") {
               const savedCliente = await clienteQuerys.createCliente(cliente);
             }else{
@@ -251,12 +251,6 @@ clienteForm.addEventListener("submit", async (e) => {
                 });
                 console.log(savedCliente);
               }
-          }else{
-            notifier.notify({
-              title: 'Siglo 21',
-              message: 'No eres mayor de 18 años'+clienteFecNac.value
-            });
-          }
         } else {
           cliente.push(ediotClienteId);
           cliente.shift();

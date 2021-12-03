@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siglo XXI</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/app.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <img class="navbar-brand" style="width: 100px;" src="../../imagenes/logo.jpeg"></img>
+      <div class="collapse navbar-collapse" id="navbarColor03">
+      </div>
+    </div>
+  </nav>
+  <main class="container-fluid">
+    <div class="contenedor row">
+      <div class="col-2 btn-group-vertical">
+        <button type="button" class="btn btn-primary" id="btnBodega">Bodegas</button>
+        <button type="button" class="btn btn-primary" id="btnPlato">Platos</button>
+      </div>
+     
+      <!-- Bodega -->
+      <div class="col-md-10 vis" id="tablaBodega">
+        <div>
+          <table class="table table-hover animated fadeInRight" id="cabeceraBodega">
+            <thead>
+              <tr>
+                <th scope="col">SKU</th>
+                <th scope="col">NOMBRE</th>
+                <th scope="col">MARCA</th>
+                <th scope="col">STOCK ACTUAL</th>
+                <th scope="col">DETALLES</th>
+              </tr>
+            </thead>
+            <tbody id="bodega">
+              <!-- Bodega contenido -->
+            </tbody>
+          </table>
+        </div>
+        <div class="vis" id="formBodega">
+          <!-- Bodega Form -->
+          <form id="bodegaForm" class="card card-body">
+            <div class="form-group">
+              <input type="text" id="sku" placeholder="bodega Sku: 1111" class="form-control" autofocus />
+            </div>
+            <div class="form-group">
+              <input type="text" id="nombre" placeholder="bodega nombre" step="any" class="form-control" />
+            </div>
+            <div class="form-group">
+              <input type="text" id="marca" placeholder="bodega marca" step="any" class="form-control" />
+            </div>
+            <div class="form-group">
+              <input type="number" id="stock" placeholder="bodega stock" class="form-control" autofocus />
+            </div>
+            <div class="form-group">
+              <textarea id="detalle" rows="1" placeholder="bodega detalle" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar</button>
+          </form>
+        </div>
+      </div>
+      <!--Fin Bodega -->
+       <!--Inicio seccion Plato-->
+       <div class="col-md-10 inv" id="tablaPlato">
+        <div>
+          <table id="cabeceraPlato" class="table table-hover animated fadeInRight">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">NOMBRE</th>
+                <th scope="col">STOCK</th>
+                <th scope="col">TIPO</th>
+                <th scope="col">PRECIO</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody id="plato">
+              <!-- Plato contenido -->
+            </tbody>
+          </table>
+        </div>
+        <div class="inv" id="formPlato">
+          <!-- Plato Form -->
+          <form id="platoForm" class="card card-body">
+            <div class="form-group">
+              <input type="text" id="idPlato" placeholder="numero del Plato" class="form-control" autofocus />
+            </div>
+            <div class="form-group">
+              <input type="text" id="nombrePlato" placeholder="Nombre del Plato" step="any" class="form-control" />
+            </div>
+            <div class="form-group">
+              <input type="number" id="stockPlato" placeholder="Stock" step="any" class="form-control" />
+            </div>
+            <div class="form-group">
+              <select class="form-select" aria-label="Selecciona una tipo de plato" id="tipoPlato">
+                <option selected>Selecciona tipo de plato</option>
+                <option value="Principal">Principal</option>
+                <option value="Acompañante">Acompañante</option>
+                <option value="Bebida">Bebida</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <input type="number" id="precioPlato" placeholder="Precio" step="any" class="form-control" />
+            </div>
+            <div class="form-group">
+              <select class="form-select" aria-label="Selecciona orientacion del plato" id="orientacionPlato">
+                <option selected>Selecciona orientacion del plato</option>
+                <option value="1">Veggie</option>
+                <option value="2">Carne</option>
+                <option value="3">Sin gluten</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select class="form-select" aria-label="Selecciona una tipo de plato" id="cocineroPlato">
+                <option selected>Selecciona cocinero</option>
+                <option value="1C">Gerardo Ramos</option>
+                <option value="2C">Bernardo Dior</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar</button>
+          </form>
+        </div>
+      </div>
+      <!--Plato Plato-->
+
+    </div>
+  </main>
+  <script src="../browser-side/bodega.js"></script>
+</body>
+
+</html>
