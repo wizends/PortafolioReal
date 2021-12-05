@@ -5,14 +5,67 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Siglo XXI</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css" />
-        <link rel="stylesheet" href="../css/app.css" />
+        <link rel="stylesheet" href="../css/cliente.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
       </head>
 <body>
-    <div class="container-flui">
+    <div class="container-fluid card card-body">
+        <div class="row ">
+            <h1>Bienvenido a Siglo XXI</h1>
+            <img  class="logo" src="../../imagenes/logo.jpeg">
+        </div>
+    </div>
+    <div class="container animated fadeInRight vis" id="cliente">
         <div class="row">
-            <div class="col"><a type="button" class="btn btn-primary" id="btnAdmin">Entrar como Administrador</a></div>
-            <div class="col" ><a  type="button" class="btn btn-primary" id="btnCliente">Entrar como Cliente</a></div>
+            <div>
+                <h3>Ingresa tus datos para el registro</h3>
+            </div>
+        </div>
+        <div id="formAsignar">
+            <form class="form-group" id="formCliente">
+                <div class="row">
+                    <div class="col">
+                        <input type="text" placeholder="Nombre" class="form-control" id="nombre">
+                    </div>
+                    <div class="col">
+                        <input type="text" placeholder="Apellido" class="form-control" id="apellido">
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <select class="form-select" aria-label="Selecciona una Zona" id="mesaZona">
+                            <option selected>Elije</option>
+                            <option value="Terraza">Terraza</option>
+                            <option value="Interior">Interior</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <input type="number" placeholder="Cantidad personas" class="form-control" min="1" max="6" id="cantidad">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Mesas disponibles</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="inv" id="mesas">
+        <div class="card card-body">
+            <h2>Mesa 1</h2>
+            <h4>Exterior</h4>
+            <a type="button" class="btn btn-primary" id="seleccionar">Seleccionar</a>
+        </div>
+    </div>
+    <div class="inv" id="mesaResultado">
+        <div class="card card-body">
+            <h2>Mesa 1</h2>
+            <h4>Exterior</h4>
+            <h5>Siga a su camarero hasta su mesa!</h5>
+            <div class="spinner-border" role="status">
+              </div>
         </div>
     </div>
     <script src="../browser-side/cliente.js"></script>
