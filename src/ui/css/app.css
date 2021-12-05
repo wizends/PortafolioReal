@@ -129,3 +129,6 @@ html, body{
 .imagenPdf{
   max-width: 150px;
 }
+#botonActualizar{
+  display:table;
+}

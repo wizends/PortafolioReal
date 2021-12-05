@@ -26,7 +26,7 @@ const createMesa = async (mesa) => {
   
   const getMesa = async () => {
     const conn = await obtenerConn();
-    const results = await conn.execute("SELECT id,camarero,sillas,zona FROM mesa");
+    const results = await conn.execute("SELECT id,camarero,sillas,zona,estado FROM mesa");
     return results.rows;
   };
   
@@ -44,13 +44,13 @@ const createMesa = async (mesa) => {
   
   const getMesaById = async (mesaId) => {
     const conn = await obtenerConn();
-    const sql = "select camarero, sillas, zona from mesa where id = :id"
+    const sql = "select camarero, sillas, zona,estado from mesa where id = :id"
     const result = await conn.execute(sql,mesaId);
     return result.rows[0];
   };
   const updateMesa = async (mesa) => {
     const conn = await obtenerConn();
-    const sql = 'BEGIN sp_updateMesa(:id,:garzon,:sillas,:zona,:id_garzon); END;';
+    const sql = 'BEGIN sp_updateMesa(:id,:garzon,:sillas,:zona,:id_garzon,:estado); END;';
     const result = await conn.execute(sql,mesa);
     conn.commit();
     notifier.notify({

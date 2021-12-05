@@ -5,11 +5,20 @@ oracledb.outFormat = oracledb.OUT_FORMAT_ARRAY;
 
 const consultaDisponibilidad = async(asignacion) =>{
     const conn = await obtenerConn();
-    const sql = "select * from mesa where cantidad = :cantidad and zona = :zona";
-    const result = conn.execute(sql,asignacion);
+    const sql = "select * from mesa where sillas = :cantidad and zona = :zona";
+    const result = await conn.execute(sql,asignacion);
+    console.log(result.rows)
     return result.rows
 }
 
+const actualizarEstado = async(id) =>{
+    const conn = await obtenerConn();
+    const sql = "BEGIN sp_updateEstadoMesa(:id); END;"
+    await conn.execute(sql,id);
+    conn.commit();
+}
+
  module.exports = {
-     consultaDisponibilidad
+    consultaDisponibilidad,
+    actualizarEstado
  }

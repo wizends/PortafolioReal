@@ -16,37 +16,41 @@ const asignacion = [];
 
 
 
-
-
 formCliente.addEventListener("submit", async(e)=>{
     e.preventDefault()
-    const asignacion =[
-        bdCantidad = cantidad.value,
+    const asignacion = [
+        bdCantidad = parseInt(cantidad.value),
         bdmesaZona = mesaZona.value
     ]
+    console.log(asignacion)
     try {
-        //const mesasDisponibles = await asignacionQuerys.consultaDisponibilidad(asignacion)
+        const mesasDisponibles = await asignacionQuerys.consultaDisponibilidad(asignacion)
         cliente.className = "inv"
-        mesas.className = "container animated fadeInRight vis"
-    } catch (error) {
+        console.log(mesasDisponibles)
+        mesas.innerHTML = ""
+        mesasDisponibles.forEach((t) => {
+            mesas.innerHTML = `<div id="carta" class="container animated fadeInRight vis card card-body">
+            <h2>Mesa ${t[0]}</h2>
+            <h4>${t[3]}</h4>
+            <a type="button" class="btn btn-primary" id="seleccionar" onClick= "seleccionarMesa('${t[0]}')" >Seleccionar</a>
+        </div>`
+          });
         
+    } catch (error) {
+        console.log(error)
     }
 })
-seleccionar.addEventListener("click", async(e)=>{
-    e.preventDefault()
+const seleccionarMesa = async(id) => {
+
+    const actualizar = await asignacionQuerys.actualizarEstado([id]);
     setTimeout(function(){
-        mesaResultado.className = "container animated fadeInRight inv"
-        cliente.className = "ontainer animated fadeInRight vis"
-    },3000);
+        mesaResultado.className = "container animated fadeInRight inv";
+        cliente.className = "container animated fadeInRight vis";
+    },5000);
     //cliente.className = "container animated fadeInRight vis"
-    mesas.className = "inv"
-    mesaResultado.className = "container animated fadeInRight vis"
+    const carta = document.getElementById("carta");
+    carta.remove();
+    mesaResultado.className = "container animated fadeInRight vis";
+}
 
-
-    notifier.notify({
-        title: 'Siglo 21',
-        message: 'Mesa ' + 2 + ' asignada correctamente!'
-      });
-
-})
 

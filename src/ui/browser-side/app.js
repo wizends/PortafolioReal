@@ -403,9 +403,11 @@ const mesaZonas = document.querySelector("#mesaZona");
 const btnMesa = document.querySelector("#btnMesa");
 const mesaList = document.querySelector("#mesa");
 
+
 let mesa = [];
 
 let ediotMesaId;
+
 
 const deleteMesa = async (mesaId) => {
   const response = confirm("¿Estas seguro de que deseas borrar este elemento?");
@@ -417,13 +419,20 @@ const deleteMesa = async (mesaId) => {
 };
 
 const editMesa = async (mesaId) => {
+  const estado = document.getElementById("estado")
+  estado.innerHTML = `<select class="form-select" aria-label="Selecciona una Zona" id="estadoMesa">
+  <option value = "Disponible">Disponible</option>
+  <option value = "Ocupada">Ocupada</option>
+</select>`
+  const estadoMesa = document.getElementById("estadoMesa")
   const mesa = await mesaQuerys.getMesaById([mesaId]);
   mesaCamarero.value = mesa[0];
   mesaSillas.value = parseInt(mesa[1]);
   mesaZonas.value = mesa[2];
-
+  estadoMesa.value = mesa[3];
   editingStatus = true;
   ediotMesaId = mesaId;
+  
 };
 
 mesaForm.addEventListener("submit", async (e) => {
@@ -442,8 +451,10 @@ mesaForm.addEventListener("submit", async (e) => {
       const savedMesa = await mesaQuerys.createMesa(mesa);
       console.log(savedMesa);
     } else {
+      const estadoMesa = document.getElementById("estadoMesa")
       mesa.shift();
       mesa.unshift(ediotMesaId);
+      mesa.push(estadoMesa.value)
       console.log(mesa);
       const mesaUpdated = await mesaQuerys.updateMesa(mesa);
       console.log(mesaUpdated);
@@ -469,6 +480,7 @@ function renderMesa(tasks) {
           <td>${t[1]}</td>
           <td>${t[2]}</td>
           <td>${t[3]}</td>
+          <td>${t[4]}</td>
           <td><button class="btn btn-danger btn-sm" onclick="deleteMesa('${t[0]}')">
           DELETE
         </button>
