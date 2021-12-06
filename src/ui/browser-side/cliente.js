@@ -32,7 +32,7 @@ formCliente.addEventListener("submit", async(e)=>{
             mesas.innerHTML = `<div id="carta" class="container animated fadeInRight vis card card-body">
             <h2>Mesa ${t[0]}</h2>
             <h4>${t[3]}</h4>
-            <a type="button" class="btn btn-primary" id="seleccionar" onClick= "seleccionarMesa('${t[0]}')" >Seleccionar</a>
+            <a type="button" class="btn btn-primary" id="seleccionar" onClick= "seleccionarMesa('${t[0]},${t[1]},${t[3]}')" >Seleccionar</a>
         </div>`
           });
         

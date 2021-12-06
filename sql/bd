@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- Archivo creado  - martes-noviembre-30-2021   
+-- Archivo creado  - lunes-diciembre-06-2021   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table ADMINISTRADOR
@@ -168,7 +168,8 @@
 	"CAMARERO" VARCHAR2(50 BYTE), 
 	"SILLAS" NUMBER, 
 	"ZONA" VARCHAR2(50 BYTE), 
-	"GARZON_ID" VARCHAR2(50 BYTE)
+	"GARZON_ID" VARCHAR2(50 BYTE), 
+	"ESTADO" VARCHAR2(50 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -184,13 +185,8 @@
    (	"ID" NUMBER, 
 	"HORA_PEDIDO" VARCHAR2(50 BYTE), 
 	"HORA_PEDIDO_LISTO" VARCHAR2(50 BYTE), 
-	"HORA_PEDIDO_ENTREGADO" VARCHAR2(50 BYTE), 
-	"PLATO" VARCHAR2(50 BYTE), 
-	"ACOMPAÑAMIENTO" VARCHAR2(50 BYTE), 
-	"BEBIDA" VARCHAR2(50 BYTE), 
-	"CANTIDAD_PLATO" NUMBER, 
-	"CANTIDAD_ACOMP" NUMBER, 
-	"CANTIDA_BEBIDA" NUMBER, 
+	"ESTADO" VARCHAR2(50 BYTE), 
+	"PEDIDO" VARCHAR2(100 BYTE), 
 	"CLIENTE_ID_CLIENTE" VARCHAR2(50 BYTE)
    ) SEGMENT CREATION DEFERRED 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
@@ -216,7 +212,7 @@
 
   CREATE TABLE "PORTAFOLIO1"."PEDIDO_PROVEEDOR" 
    (	"ID" VARCHAR2(50 BYTE), 
-	"PEDIDO" VARCHAR2(50 BYTE), 
+	"PEDIDO" VARCHAR2(1000 BYTE), 
 	"FECHA_PEDIDO" VARCHAR2(50 BYTE), 
 	"FECHA_ENTREGA" VARCHAR2(50 BYTE), 
 	"FINANZA_ID" VARCHAR2(50 BYTE)
@@ -297,18 +293,21 @@ SET DEFINE OFF;
 REM INSERTING into PORTAFOLIO1.BODEGA
 SET DEFINE OFF;
 Insert into PORTAFOLIO1.BODEGA (SKU,MARCA,STOCK,DETALLE,USUARIO_BODEGA_ID,NOMBRE) values ('154','Jumbo','50','Paltas verdes ','1B','Palta');
+Insert into PORTAFOLIO1.BODEGA (SKU,MARCA,STOCK,DETALLE,USUARIO_BODEGA_ID,NOMBRE) values ('155','Del campo','60','Choclo fresco de grano grande','1B','Choclo');
 Insert into PORTAFOLIO1.BODEGA (SKU,MARCA,STOCK,DETALLE,USUARIO_BODEGA_ID,NOMBRE) values ('152','Sopraval','10','Asiento','1B','Carne Vacuno');
 Insert into PORTAFOLIO1.BODEGA (SKU,MARCA,STOCK,DETALLE,USUARIO_BODEGA_ID,NOMBRE) values ('153','Sopraval','10','Pollo','1B','Pechuga de pollo');
 REM INSERTING into PORTAFOLIO1.CAJA
 SET DEFINE OFF;
-Insert into PORTAFOLIO1.CAJA (ID,FECHAH_INICIO,FECHAH_FINAL,ESTADO,SALDO_INICIAL,SALDO_FINAL,FINANZA_ID) values ('2C','2021-10-30 0:36','2021-10-30 0:36','Cerrada','324234234','200','1F');
-Insert into PORTAFOLIO1.CAJA (ID,FECHAH_INICIO,FECHAH_FINAL,ESTADO,SALDO_INICIAL,SALDO_FINAL,FINANZA_ID) values ('1C','2021-10-29 20:23','2021-10-30 0:34','Cerrada','2563982','324234234','1F');
+Insert into PORTAFOLIO1.CAJA (ID,FECHAH_INICIO,FECHAH_FINAL,ESTADO,SALDO_INICIAL,SALDO_FINAL,FINANZA_ID) values ('1C','2021-11-6 13:15','2021-11-6 13:15','Cerrada','572369','612352','1F');
 REM INSERTING into PORTAFOLIO1.CLIENTE
 SET DEFINE OFF;
-Insert into PORTAFOLIO1.CLIENTE (ID_CLIENTE,NOMBRES,APELLIDOS,RUT,FECHA_NAC,EMAIL) values ('4','Carolina','Rodriguez','17907509-1','1991-09-16','caro@gmail.com');
-Insert into PORTAFOLIO1.CLIENTE (ID_CLIENTE,NOMBRES,APELLIDOS,RUT,FECHA_NAC,EMAIL) values ('123cd','Diego','Jorquera','17963589-1','1991-02-15','diego@gmail.com');
-Insert into PORTAFOLIO1.CLIENTE (ID_CLIENTE,NOMBRES,APELLIDOS,RUT,FECHA_NAC,EMAIL) values ('3','Dario','Parra','19654326-5','1998-03-11','dario@gmail.com');
-Insert into PORTAFOLIO1.CLIENTE (ID_CLIENTE,NOMBRES,APELLIDOS,RUT,FECHA_NAC,EMAIL) values ('321','Conny','Sanzana','19654236-0','1997-02-12','conny@gmail.com');
+Insert into PORTAFOLIO1.CLIENTE (ID_CLIENTE,NOMBRES,APELLIDOS,RUT,FECHA_NAC,EMAIL) values ('7','Daniel','Arrejo','19634503-5','1996-02-17','dani@gmail.com');
+Insert into PORTAFOLIO1.CLIENTE (ID_CLIENTE,NOMBRES,APELLIDOS,RUT,FECHA_NAC,EMAIL) values ('6','Tamara','Soto','19954890-5','1997-02-16','tamara@gmail.com');
+Insert into PORTAFOLIO1.CLIENTE (ID_CLIENTE,NOMBRES,APELLIDOS,RUT,FECHA_NAC,EMAIL) values ('2','Carolina ','Rodriguez ','17907509-1','1991-09-16','caro@gmail.com');
+Insert into PORTAFOLIO1.CLIENTE (ID_CLIENTE,NOMBRES,APELLIDOS,RUT,FECHA_NAC,EMAIL) values ('1','Ricardo','Perez','19634503-5','1997-06-17','ricardo@gmail.com');
+Insert into PORTAFOLIO1.CLIENTE (ID_CLIENTE,NOMBRES,APELLIDOS,RUT,FECHA_NAC,EMAIL) values ('3','Conny','Sanzanas','20397105-2','1999-02-18','conny@gmail.com');
+Insert into PORTAFOLIO1.CLIENTE (ID_CLIENTE,NOMBRES,APELLIDOS,RUT,FECHA_NAC,EMAIL) values ('4','Diego','Jorquera','17635236-5','1991-02-18','diego@gmail.com');
+Insert into PORTAFOLIO1.CLIENTE (ID_CLIENTE,NOMBRES,APELLIDOS,RUT,FECHA_NAC,EMAIL) values ('5','Manuel','Raya','19634503-5','1991-02-12','manu@gmail.com');
 REM INSERTING into PORTAFOLIO1.COCINA
 SET DEFINE OFF;
 Insert into PORTAFOLIO1.COCINA (ID,NOMBRE,APELLIDO,TIPO) values ('1C','Gerardo','Ramos','Chef');
@@ -329,21 +328,28 @@ Insert into PORTAFOLIO1.MENU (ID,TIPO_MENU) values ('1','Menu Veggie');
 Insert into PORTAFOLIO1.MENU (ID,TIPO_MENU) values ('2','Menu Carnes');
 REM INSERTING into PORTAFOLIO1.MESA
 SET DEFINE OFF;
-Insert into PORTAFOLIO1.MESA (ID,CAMARERO,SILLAS,ZONA,GARZON_ID) values ('4M','Alberto Saldias','5','Terraza','1G');
-Insert into PORTAFOLIO1.MESA (ID,CAMARERO,SILLAS,ZONA,GARZON_ID) values ('1M','Alberto Saldias','4','Interior','1G');
-Insert into PORTAFOLIO1.MESA (ID,CAMARERO,SILLAS,ZONA,GARZON_ID) values ('2M','Alberto Saldias','2','Exterior','1G');
-Insert into PORTAFOLIO1.MESA (ID,CAMARERO,SILLAS,ZONA,GARZON_ID) values ('3M','Alberto Saldias','6','Interior','1G');
+Insert into PORTAFOLIO1.MESA (ID,CAMARERO,SILLAS,ZONA,GARZON_ID,ESTADO) values ('6M','Diego Riobueno','2','Interior','1G','Disponible');
+Insert into PORTAFOLIO1.MESA (ID,CAMARERO,SILLAS,ZONA,GARZON_ID,ESTADO) values ('7M','Jenry Valdez','6','Terraza','1G','Disponible');
+Insert into PORTAFOLIO1.MESA (ID,CAMARERO,SILLAS,ZONA,GARZON_ID,ESTADO) values ('8M','Jenry Valdez','2','Interior','1G','Disponible');
+Insert into PORTAFOLIO1.MESA (ID,CAMARERO,SILLAS,ZONA,GARZON_ID,ESTADO) values ('5M','Roberto Gonzales','2','Terraza','1G','Disponible');
+Insert into PORTAFOLIO1.MESA (ID,CAMARERO,SILLAS,ZONA,GARZON_ID,ESTADO) values ('4M','Alberto Saldias','4','Terraza','1G','Disponible');
+Insert into PORTAFOLIO1.MESA (ID,CAMARERO,SILLAS,ZONA,GARZON_ID,ESTADO) values ('2M','Diego Riobuno','4','Interior','1G','Disponible');
+Insert into PORTAFOLIO1.MESA (ID,CAMARERO,SILLAS,ZONA,GARZON_ID,ESTADO) values ('1M','Alberto Saldias','4','Interior','1G','Ocupada');
+Insert into PORTAFOLIO1.MESA (ID,CAMARERO,SILLAS,ZONA,GARZON_ID,ESTADO) values ('3M','Alberto Saldias','6','Interior','1G','Ocupada');
 REM INSERTING into PORTAFOLIO1.ORDEN
 SET DEFINE OFF;
 REM INSERTING into PORTAFOLIO1.PAGO
 SET DEFINE OFF;
 REM INSERTING into PORTAFOLIO1.PEDIDO_PROVEEDOR
 SET DEFINE OFF;
+Insert into PORTAFOLIO1.PEDIDO_PROVEEDOR (ID,PEDIDO,FECHA_PEDIDO,FECHA_ENTREGA,FINANZA_ID) values ('2P','Papa(20),Piña(20),Chirimoya(20),Frambuesa(20),Arverjas(10),','2021-12-06','2021-12-13','1F');
 Insert into PORTAFOLIO1.PEDIDO_PROVEEDOR (ID,PEDIDO,FECHA_PEDIDO,FECHA_ENTREGA,FINANZA_ID) values ('3P','Cebolla(20),Choclo(10),','2021-11-28','2021-12-10','1F');
 Insert into PORTAFOLIO1.PEDIDO_PROVEEDOR (ID,PEDIDO,FECHA_PEDIDO,FECHA_ENTREGA,FINANZA_ID) values ('4P','Tomate(50),','2021-11-28','2021-12-09','1F');
 Insert into PORTAFOLIO1.PEDIDO_PROVEEDOR (ID,PEDIDO,FECHA_PEDIDO,FECHA_ENTREGA,FINANZA_ID) values ('1P','Palta(20),Tomate(20),Frutilla(20)','2021-11-28','2021-11-30','1F');
+Insert into PORTAFOLIO1.PEDIDO_PROVEEDOR (ID,PEDIDO,FECHA_PEDIDO,FECHA_ENTREGA,FINANZA_ID) values ('5P','Arroz(5),Salsa de tomate(20),Esparragos(10),Canelones(20),Espirales(10),','2021-12-05','2021-12-19','1F');
 REM INSERTING into PORTAFOLIO1.PLATO
 SET DEFINE OFF;
+Insert into PORTAFOLIO1.PLATO (ID,NOMBRE,STOCK,TIPO,PRECIO,MENU_ID,COCINA_ID) values ('2P','Pastel de choclo','20','Principal','4200','1','1C');
 Insert into PORTAFOLIO1.PLATO (ID,NOMBRE,STOCK,TIPO,PRECIO,MENU_ID,COCINA_ID) values ('1P','Pasta carbonara','10','Principal','5600','2','1C');
 Insert into PORTAFOLIO1.PLATO (ID,NOMBRE,STOCK,TIPO,PRECIO,MENU_ID,COCINA_ID) values ('3P','Cazuela de pollo','10','Principal','5200','2','2C');
 Insert into PORTAFOLIO1.PLATO (ID,NOMBRE,STOCK,TIPO,PRECIO,MENU_ID,COCINA_ID) values ('4P','Lazzana','12','Principal','5400','2','1C');
@@ -352,6 +358,9 @@ SET DEFINE OFF;
 REM INSERTING into PORTAFOLIO1.USUARIO
 SET DEFINE OFF;
 Insert into PORTAFOLIO1.USUARIO (ID,USERNAME,PASSWORD,TIPO) values ('1','Ricardo','123','Administrador');
+Insert into PORTAFOLIO1.USUARIO (ID,USERNAME,PASSWORD,TIPO) values ('2','Diego','123','Bodega');
+Insert into PORTAFOLIO1.USUARIO (ID,USERNAME,PASSWORD,TIPO) values ('3','Caro','123','Finanza');
+Insert into PORTAFOLIO1.USUARIO (ID,USERNAME,PASSWORD,TIPO) values ('4','Conny','123','Cocina');
 REM INSERTING into PORTAFOLIO1.USUARIO_BODEGA
 SET DEFINE OFF;
 Insert into PORTAFOLIO1.USUARIO_BODEGA (ID,NOMBRE,APELLIDO) values ('1B','Alberto','Casas');
@@ -762,6 +771,20 @@ end;
 
 /
 --------------------------------------------------------
+--  DDL for Procedure SP_CERRARPEDIDO
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE NONEDITIONABLE PROCEDURE "PORTAFOLIO1"."SP_CERRARPEDIDO" (v_id in varchar2)
+is 
+begin 
+
+UPDATE ORDEN SET  estado = 'Finalizado' WHERE id = v_id;
+
+end;
+
+/
+--------------------------------------------------------
 --  DDL for Procedure SP_DELETEBODEGA
 --------------------------------------------------------
 set define off;
@@ -865,7 +888,7 @@ set define off;
   CREATE OR REPLACE NONEDITIONABLE PROCEDURE "PORTAFOLIO1"."SP_INSERTARMESA" (v_id in varchar2,v_garzon in varchar2,v_sillas in number,v_zona in varchar2,v_id_garzon in varchar2)
 is 
 begin 
-insert into mesa values (v_id,v_garzon,v_sillas,v_zona,v_id_garzon);
+insert into mesa values (v_id,v_garzon,v_sillas,v_zona,v_id_garzon,'Disponible');
 end;
 
 /
@@ -922,15 +945,29 @@ end;
 
 /
 --------------------------------------------------------
+--  DDL for Procedure SP_UPDATEESTADOMESA
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE NONEDITIONABLE PROCEDURE "PORTAFOLIO1"."SP_UPDATEESTADOMESA" (v_id in varchar2)
+is 
+begin 
+
+UPDATE mesa SET  estado = 'Ocupada'  WHERE id = v_id;
+
+end;
+
+/
+--------------------------------------------------------
 --  DDL for Procedure SP_UPDATEMESA
 --------------------------------------------------------
 set define off;
 
-  CREATE OR REPLACE NONEDITIONABLE PROCEDURE "PORTAFOLIO1"."SP_UPDATEMESA" (v_id in varchar2,v_garzon in varchar2,v_sillas in number,v_zona in varchar2,v_id_garzon in varchar2)
+  CREATE OR REPLACE NONEDITIONABLE PROCEDURE "PORTAFOLIO1"."SP_UPDATEMESA" (v_id in varchar2,v_garzon in varchar2,v_sillas in number,v_zona in varchar2,v_id_garzon in varchar2, v_estado in  varchar2)
 is 
 begin 
 
-UPDATE mesa SET  camarero = v_garzon, sillas = v_sillas, zona = v_zona,garzon_id = v_id_garzon WHERE id=v_id;
+UPDATE mesa SET  camarero = v_garzon, sillas = v_sillas, zona = v_zona,garzon_id = v_id_garzon, estado = v_estado WHERE id=v_id;
 
 end;
 
@@ -1082,11 +1119,15 @@ end;
 --  Constraints for Table ORDEN
 --------------------------------------------------------
 
+  ALTER TABLE "PORTAFOLIO1"."ORDEN" MODIFY ("HORA_PEDIDO" NOT NULL ENABLE);
   ALTER TABLE "PORTAFOLIO1"."ORDEN" MODIFY ("ID" NOT NULL ENABLE);
   ALTER TABLE "PORTAFOLIO1"."ORDEN" MODIFY ("CLIENTE_ID_CLIENTE" NOT NULL ENABLE);
   ALTER TABLE "PORTAFOLIO1"."ORDEN" ADD CONSTRAINT "ORDEN_PK" PRIMARY KEY ("ID")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   TABLESPACE "USERS"  ENABLE;
+  ALTER TABLE "PORTAFOLIO1"."ORDEN" MODIFY ("HORA_PEDIDO_LISTO" NOT NULL ENABLE);
+  ALTER TABLE "PORTAFOLIO1"."ORDEN" MODIFY ("ESTADO" NOT NULL ENABLE);
+  ALTER TABLE "PORTAFOLIO1"."ORDEN" MODIFY ("PEDIDO" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table PAGO
 --------------------------------------------------------
