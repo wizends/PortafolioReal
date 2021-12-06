@@ -10,27 +10,32 @@ loginForm.addEventListener("submit", async (e) => {
         const password = document.querySelector("#password").value;
         const parametros = [username, password]
         const consulta = await loginQuerys.consultarUsuario(parametros);
-        const comprobarUser = consulta[2]
-        console.log(comprobarUser) 
-        try {
-          parametros[1] != consulta[1]
-          if (comprobarUser == 'Administrador') {
-            ipcRenderer.send("newPrincipalWindow");
+        const comprobarUser = consulta[2];
+        console.log(consulta[1])
+        //try {
+          if (parametros[1] == consulta[1]) {
+            if (comprobarUser == 'Administrador') {
+              ipcRenderer.send("newPrincipalWindow");
+            }
+            if (comprobarUser == 'Bodega') {
+              ipcRenderer.send("newBodegaWindow");
+            }
+            if (comprobarUser == 'Finanza') {
+              ipcRenderer.send("newFinanzaWindow");
+            }
+            if (comprobarUser == 'Cocina') {
+              ipcRenderer.send("newCocinaWindow");
+            }
+          }else{
+            notifier.notify({
+              title: "Siglo 21",
+              message: "Campos incorrectos!",
+            });
           }
-          if (comprobarUser == 'Bodega') {
-            ipcRenderer.send("newBodegaWindow");
-          }
-          if (comprobarUser == 'Finanza') {
-            ipcRenderer.send("newFinanzaWindow");
-          }
-          if (comprobarUser == 'Cocina') {
-            ipcRenderer.send("newCocinaWindow");
-          }
-        } catch (error) {
-          notifier.notify({
-            title: 'Error',
-            message: 'Campos incorrectos, llena nuevamente!'
-          });
-        }
+          
+         
+        /*} catch (error) {
+          console.log(error)
+        }*/
   
 });

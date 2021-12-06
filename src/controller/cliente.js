@@ -26,7 +26,7 @@ const createCliente =  async (cliente) => {
   };
   const getCliente = async () => {
     const conn = await obtenerConn();
-    const sql = "select * from cliente";
+    const sql = "select * from cliente order by id_cliente asc";
     const results = await conn.execute(sql);
     console.log(results.rows);
     return results.rows;

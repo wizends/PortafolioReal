@@ -95,19 +95,19 @@
           <!-- Bodega Form -->
           <form id="bodegaForm" class="card card-body">
             <div class="form-group">
-              <input type="text" id="sku" placeholder="Sku: 1111" class="form-control" autofocus />
+              <input type="text" id="sku" placeholder="Sku: 1111" pattern="[0-9]{1,4}" class="form-control" autofocus  required/>
             </div>
             <div class="form-group">
-              <input type="text" id="nombre" pattern="^[a-zA-Z\s]{2,254}" placeholder="Nombre de producto o ingrediente" step="any" class="form-control" />
+              <input type="text" id="nombre" pattern="[a-zA-Z \s]{2,254}" placeholder="Nombre de producto o ingrediente" step="any" class="form-control" required/>
             </div>
             <div class="form-group">
-              <input type="text" id="marca" pattern="^[a-zA-Z\s]{2,254}" placeholder="Marca de producto" step="any" class="form-control" />
+              <input type="text" id="marca" pattern="[a-zA-Z \s]{2,254}" placeholder="Marca de producto" step="any" class="form-control" required/>
             </div>
             <div class="form-group">
-              <input type="number" id="stock" placeholder="Stock" class="form-control" autofocus />
+              <input type="number" id="stock" placeholder="Stock" class="form-control" autofocus required/>
             </div>
             <div class="form-group">
-              <textarea id="detalle" rows="1" pattern="^[a-zA-Z\s]{2,254}" placeholder="Detalles del producto" class="form-control"></textarea>
+              <textarea id="detalle" rows="1" pattern="[a-zA-Z \s]{2,254}" placeholder="Detalles del producto" class="form-control" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Agregar</button>
           </form>
@@ -138,17 +138,18 @@
         <!-- Mesa Form -->
         <form id="mesaForm" class="card card-body">
           <div class="form-group">
-            <input type="text" id="idMesa" pattern="^[a-zA-Z\s]{2,254}" placeholder="Numero de mesa + M" class="form-control"
-              autofocus />
+            <input type="text" id="idMesa" pattern="(1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)M|m" 
+            title="Recuerda que el formato debe ser Numero + M" placeholder="Numero de mesa + M" class="form-control"
+              autofocus  required/>
           </div>
           <div class="form-group">
-            <input type="text" id="camarero" pattern="^[a-zA-Z\s]{2,254}" placeholder="Nombre camarero" step="any" class="form-control" />
+            <input type="text" id="camarero" pattern="^[a-zA-Z \s]{2,254}" placeholder="Nombre camarero" step="any" class="form-control" required/>
           </div>
           <div class="form-group">
-            <input type="number" id="numSillas" placeholder="Numero de sillas" step="any" class="form-control" />
+            <input type="number" id="numSillas" placeholder="Numero de sillas" step="any" class="form-control" required/>
           </div>
           <div class="form-group">
-            <select class="form-select" aria-label="Selecciona una Zona" id="mesaZona">
+            <select class="form-select" aria-label="Selecciona una Zona" id="mesaZona" required>
               <option selected>Elije</option>
               <option value="Terraza">Terraza</option>
               <option value="Interior">Interior</option>
@@ -187,10 +188,10 @@
           <!-- Plato Form -->
           <form id="platoForm" class="card card-body">
             <div class="form-group">
-              <input type="text" id="idPlato" placeholder="Numero del Plato + P" class="form-control" autofocus />
+              <input type="text" id="idPlato" placeholder="Numero del Plato + P" class="form-control" autofocus pattern="(1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40)P" required/>
             </div>
             <div class="form-group">
-              <input type="text" id="nombrePlato" pattern="^[a-zA-Z\s]{2,254}" placeholder="Nombre del Plato" step="any" class="form-control" />
+              <input type="text" id="nombrePlato" pattern="^[a-zA-Z \s]{2,254}" placeholder="Nombre del Plato" step="any" class="form-control" />
             </div>
             <div class="form-group">
               <input type="number" id="stockPlato" placeholder="Stock" step="any" class="form-control" />
@@ -249,12 +250,13 @@
           <div>
             <form id="proveedorForm" class="col-md-10 card card-body">
               <div class="form-group">
-                <input type="text" id="idProveedor" placeholder="Numero proveedor + P" class="form-control" autofocus />
+                <input type="text" id="idProveedor" placeholder="Numero proveedor + P" class="form-control" 
+                pattern="(1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40)P" required autofocus />
               </div>
       
               <div class="form-group">
                 <div>
-                  <input type="text" pattern="^[a-zA-Z\s]{2,254}" id="pedidoProveedor" placeholder="Pedido"
+                  <input type="text" pattern="^[a-zA-Z \s]{2,254}" id="pedidoProveedor" placeholder="Pedido"
                     class="col  form-group animated fadeInRight" />
                   <input type="number" id="cantidadProveedor" placeholder="Cantidad"
                     class="col  form-group animated fadeInRight" />
@@ -262,7 +264,7 @@
                 </div>
                 <div class="col form-group">
                   <div>
-                    <textarea id="contenidoCreado"></textarea><a id="botonActualizar" class="btn btn-primary">Actualizar
+                    <textarea id="contenidoCreado" required></textarea><a id="botonActualizar" class="btn btn-primary">Actualizar
                       lista</a>
                   </div>
                 </div>
@@ -309,13 +311,14 @@
           <!-- Caja Form -->
           <form id="cajaForm" class="card card-body">
             <div class="form-group">
-              <input type="text" id="idCaja" placeholder="Numero de instancia de caja + C" class="form-control" autofocus />
+              <input type="text" id="idCaja" placeholder="Numero de instancia de caja + C" class="form-control" 
+              pattern="(1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40)C" required autofocus required/>
             </div>
             <div class="form-group">
-              <input type="number" id="saldoInicialCaja" placeholder="Saldo Inicial" step="any" class="form-control" />
+              <input type="number" id="saldoInicialCaja" placeholder="Saldo Inicial" step="any" class="form-control" required/>
             </div>
             <div class="form-group">
-              <input type="text" id="encargadoCaja" placeholder="Codigo Encargado" step="any" class="form-control" />
+              <input type="text" id="encargadoCaja" placeholder="Codigo Encargado" step="any" class="form-control" required/>
             </div>
             <button type="submit" class="btn btn-primary">Iniciar Caja</button>
           </form>

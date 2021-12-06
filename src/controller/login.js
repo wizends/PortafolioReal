@@ -13,10 +13,12 @@ const consultarUsuario = async (parametros) => {
   const sql2 =
     "select tipo from usuario where username = :usuario and password = :password";
   const result2 = await conn.execute(sql2, parametros);
-  notifier.notify({
-    title: "Siglo 21",
-    message: "Logeado como " + result2.rows,
-  });
+  if (result2.rows != "") {
+    notifier.notify({
+      title: "Siglo 21",
+      message: "Logeado como " + result2.rows,
+    });
+  }
   return result.rows[0];
 };
 

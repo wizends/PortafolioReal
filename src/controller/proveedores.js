@@ -26,7 +26,7 @@ const createProveedor = async (proveedor) => {
   
   const getProveedor = async () => {
     const conn = await obtenerConn();
-    const results = await conn.execute("select id, pedido, fecha_pedido, fecha_entrega from pedido_proveedor");
+    const results = await conn.execute("select id, pedido, fecha_pedido, fecha_entrega from pedido_proveedor order by id asc");
     return results.rows;
   };
   

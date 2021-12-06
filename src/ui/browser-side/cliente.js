@@ -41,7 +41,15 @@ formCliente.addEventListener("submit", async(e)=>{
     }
 })
 const seleccionarMesa = async(id) => {
-
+    mesaResultado.innerHTML = `
+    <div class="container animated fadeInRight vis card card-body">
+            <h2>${id}</h2>
+            <h4>Exterior</h4>
+            <h5>Siga a su camarero hasta su mesa!</h5>
+            <div class="spinner-border" role="status">
+              </div>
+        </div>
+    `;
     const actualizar = await asignacionQuerys.actualizarEstado([id]);
     setTimeout(function(){
         mesaResultado.className = "container animated fadeInRight inv";
@@ -50,7 +58,7 @@ const seleccionarMesa = async(id) => {
     //cliente.className = "container animated fadeInRight vis"
     const carta = document.getElementById("carta");
     carta.remove();
-    mesaResultado.className = "container animated fadeInRight vis";
+   
 }
 
 

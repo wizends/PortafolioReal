@@ -26,7 +26,7 @@ const createMesa = async (mesa) => {
   
   const getMesa = async () => {
     const conn = await obtenerConn();
-    const results = await conn.execute("SELECT id,camarero,sillas,zona,estado FROM mesa");
+    const results = await conn.execute("SELECT id,camarero,sillas,zona,estado FROM mesa order by id asc");
     return results.rows;
   };
   

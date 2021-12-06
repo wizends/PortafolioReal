@@ -29,7 +29,7 @@ const createBodega = async (bodega) => {
   
   const getBodega = async () => {
     const conn = await obtenerConn();
-    const results = await conn.execute("SELECT sku,nombre,marca,stock,detalle FROM bodega");
+    const results = await conn.execute("SELECT sku,nombre,marca,stock,detalle FROM bodega order by sku asc");
     return results.rows;
   };
   
