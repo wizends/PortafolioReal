@@ -241,8 +241,12 @@ clienteForm.addEventListener("submit", async (e) => {
         e.preventDefault();
     
         if (!editingStatus) {
-        
-            if (clienteId.value !== "" && clienteApellido.value !== "" && clienteRut.value !== "" && clienteFecNac.value !== "" && clienteEmail.value !== "") {
+            if (clienteId.value.length !== 0 || clienteApellido.value.length !== 0 || clienteRut.value.length !== 0 || clienteFecNac.value.length !== 0 || clienteEmail.value.length !== 0) {
+              if ((clienteNombre.value).length < 20 || (clienteApellido.value).legnth < 20){
+                if (validateRUT(clienteRut.value) == true ){
+                  
+                }
+              }
               const savedCliente = await clienteQuerys.createCliente(cliente);
             }else{
                 notifier.notify({

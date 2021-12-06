@@ -51,22 +51,22 @@
           <form id="clienteForm" class="card card-body">
             <!-- Cliente Form -->
             <div class="form-group">
-              <input type="text" id="idCliente" placeholder="Id cliente:123" class="form-control" autofocus />
+              <input type="text" id="idCliente" placeholder="Id cliente:123" class="form-control" autofocus required/>
             </div>
             <div class="form-group">
-              <input type="text" id="clienteNombre" placeholder="Nombres" step="any" class="form-control" />
+              <input type="text" id="clienteNombre" pattern="^[a-zA-Z\s]{2,254}" placeholder="Nombres" step="any" class="form-control" required/>
             </div>
             <div class="form-group">
-              <input type="text" id="apellido" placeholder="Apellidos" step="any" class="form-control" />
+              <input type="text" id="apellido" pattern="^[a-zA-Z\s]{2,254}" placeholder="Apellidos" step="any" class="form-control" required/>
             </div>
             <div class="form-group">
-              <input type="text" id="rut" placeholder="Rut:11999222-5" step="any" class="form-control" />
+              <input type="text" id="rut" placeholder="Rut:11999222-5" step="any" class="form-control" required/>
             </div>
             <div class="form-group">
-              <input type="date" id="fecnac" class="form-control" autofocus />
+              <input type="date" id="fecnac" class="form-control" autofocus required/>
             </div>
             <div class="form-group">
-              <input type="email" id="email" placeholder="Email" class="form-control"></textarea>
+              <input type="email" id="email" placeholder="Email" class="form-control" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Agregar</button>
           </form>
@@ -95,19 +95,19 @@
           <!-- Bodega Form -->
           <form id="bodegaForm" class="card card-body">
             <div class="form-group">
-              <input type="text" id="sku" placeholder="bodega Sku: 1111" class="form-control" autofocus />
+              <input type="text" id="sku" placeholder="Sku: 1111" class="form-control" autofocus />
             </div>
             <div class="form-group">
-              <input type="text" id="nombre" placeholder="bodega nombre" step="any" class="form-control" />
+              <input type="text" id="nombre" pattern="^[a-zA-Z\s]{2,254}" placeholder="Nombre de producto o ingrediente" step="any" class="form-control" />
             </div>
             <div class="form-group">
-              <input type="text" id="marca" placeholder="bodega marca" step="any" class="form-control" />
+              <input type="text" id="marca" pattern="^[a-zA-Z\s]{2,254}" placeholder="Marca de producto" step="any" class="form-control" />
             </div>
             <div class="form-group">
-              <input type="number" id="stock" placeholder="bodega stock" class="form-control" autofocus />
+              <input type="number" id="stock" placeholder="Stock" class="form-control" autofocus />
             </div>
             <div class="form-group">
-              <textarea id="detalle" rows="1" placeholder="bodega detalle" class="form-control"></textarea>
+              <textarea id="detalle" rows="1" pattern="^[a-zA-Z\s]{2,254}" placeholder="Detalles del producto" class="form-control"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Agregar</button>
           </form>
@@ -138,11 +138,11 @@
         <!-- Mesa Form -->
         <form id="mesaForm" class="card card-body">
           <div class="form-group">
-            <input type="text" id="idMesa" placeholder="numero de mesa + letra inicio sector" class="form-control"
+            <input type="text" id="idMesa" pattern="^[a-zA-Z\s]{2,254}" placeholder="Numero de mesa + M" class="form-control"
               autofocus />
           </div>
           <div class="form-group">
-            <input type="text" id="camarero" placeholder="camarero" step="any" class="form-control" />
+            <input type="text" id="camarero" pattern="^[a-zA-Z\s]{2,254}" placeholder="Nombre camarero" step="any" class="form-control" />
           </div>
           <div class="form-group">
             <input type="number" id="numSillas" placeholder="Numero de sillas" step="any" class="form-control" />
@@ -187,10 +187,10 @@
           <!-- Plato Form -->
           <form id="platoForm" class="card card-body">
             <div class="form-group">
-              <input type="text" id="idPlato" placeholder="numero del Plato" class="form-control" autofocus />
+              <input type="text" id="idPlato" placeholder="Numero del Plato + P" class="form-control" autofocus />
             </div>
             <div class="form-group">
-              <input type="text" id="nombrePlato" placeholder="Nombre del Plato" step="any" class="form-control" />
+              <input type="text" id="nombrePlato" pattern="^[a-zA-Z\s]{2,254}" placeholder="Nombre del Plato" step="any" class="form-control" />
             </div>
             <div class="form-group">
               <input type="number" id="stockPlato" placeholder="Stock" step="any" class="form-control" />
@@ -249,15 +249,12 @@
           <div>
             <form id="proveedorForm" class="col-md-10 card card-body">
               <div class="form-group">
-                <input type="text" id="idProveedor" placeholder="Id del Proveedor" class="form-control" autofocus />
+                <input type="text" id="idProveedor" placeholder="Numero proveedor + P" class="form-control" autofocus />
               </div>
-  
-              <div id="pedidoCampos">
-  
-              </div>
+      
               <div class="form-group">
                 <div>
-                  <input type="text" id="pedidoProveedor" placeholder="Pedido"
+                  <input type="text" pattern="^[a-zA-Z\s]{2,254}" id="pedidoProveedor" placeholder="Pedido"
                     class="col  form-group animated fadeInRight" />
                   <input type="number" id="cantidadProveedor" placeholder="Cantidad"
                     class="col  form-group animated fadeInRight" />
@@ -268,7 +265,6 @@
                     <textarea id="contenidoCreado"></textarea><a id="botonActualizar" class="btn btn-primary">Actualizar
                       lista</a>
                   </div>
-  
                 </div>
               </div>
               <div class="form-group">
@@ -313,7 +309,7 @@
           <!-- Caja Form -->
           <form id="cajaForm" class="card card-body">
             <div class="form-group">
-              <input type="text" id="idCaja" placeholder="Id del Caja" class="form-control" autofocus />
+              <input type="text" id="idCaja" placeholder="Numero de instancia de caja + C" class="form-control" autofocus />
             </div>
             <div class="form-group">
               <input type="number" id="saldoInicialCaja" placeholder="Saldo Inicial" step="any" class="form-control" />
