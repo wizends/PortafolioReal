@@ -98,14 +98,17 @@ function createSeleccionView() {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: false,
     },
+  
   });
   mainWindow.loadFile("src/ui/views/seleccion.html");
   mainWindow.on('close', () => {
     app.quit();
   })
 }
+
+
 module.exports = {
   createPrincipalView,
   createLoginView,

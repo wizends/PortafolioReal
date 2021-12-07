@@ -29,6 +29,21 @@ const createCaja = async (caja) => {
     const results = await conn.execute("select * from caja");
     return results.rows;
   };
+
+  const getEstadoById = async (cajaId) => {
+    const conn = await obtenerConn();
+    const sql = "select estado from caja where id = :id"
+    const result = await conn.execute(sql,cajaId);
+    return result.rows[0];
+  };
+
+  const calcularCajaById = async (cajaId) => {
+    const conn = await obtenerConn();
+    const sql = "select saldo_inicial, saldo_final from caja where id = :id"
+    const result = await conn.execute(sql,cajaId);
+    return result.rows[0];
+  };
+  
   
   const cerrarCaja = async (cerrar) => {
     const conn = await obtenerConn();
@@ -67,5 +82,7 @@ const createCaja = async (caja) => {
     cerrarCaja,
     getCajaById,
     updateCaja,
-    getNombreFinanza
+    getNombreFinanza,
+    getEstadoById,
+    calcularCajaById
   }

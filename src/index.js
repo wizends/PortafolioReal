@@ -9,6 +9,7 @@ app.whenReady().then(createSeleccionView);
 
 
 
+
 ipcMain.on("newPrincipalWindow", (event, arg) => {
   createPrincipalView();
 });

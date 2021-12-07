@@ -25,7 +25,7 @@
             <form class="form-group" id="formCliente">
                 <div class="row">
                     <div class="col">
-                        <input type="text" placeholder="Nombre" class="form-control" id="nombre">
+                        <input type="text" placeholder="Nombre" class="form-control" id="nombre" required>
                     </div>
                     <div class="col">
                         <input type="text" placeholder="Apellido" class="form-control" id="apellido">
@@ -34,14 +34,14 @@
                 
                 <div class="row">
                     <div class="col">
-                        <select class="form-select" aria-label="Selecciona una Zona" id="mesaZona">
+                        <select class="form-select" aria-label="Selecciona una Zona" id="mesaZona" required>
                             <option selected>Elije</option>
                             <option value="Terraza">Terraza</option>
                             <option value="Interior">Interior</option>
                         </select>
                     </div>
                     <div class="col">
-                        <input type="number" placeholder="Cantidad personas" class="form-control" min="1" max="6" id="cantidad">
+                        <input type="number" placeholder="Cantidad personas" class="form-control" min="1" max="6" id="cantidad" required>
                     </div>
                 </div>
                 <div class="row">
@@ -52,11 +52,16 @@
             </form>
         </div>
     </div>
-    <div class="vis" id="mesas">
-        
+    <div class="container" >
+        <div class="vis row" id="mesas">
+
+        </div>
     </div>
     <div class="vis" id="mesaResultado">
         
+    </div>
+    <div class="vis container" id="btnVolver">
+
     </div>
     <script src="../browser-side/cliente.js"></script>
 </body>

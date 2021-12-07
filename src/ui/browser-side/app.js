@@ -200,7 +200,8 @@ const deleteCliente = async (id_cliente) => {
 
 const editCliente = async (id_cliente) => {
   const cliente = await clienteQuerys.getClienteByid([id_cliente]);
-
+  
+  clienteId.value = id_cliente;
   clienteNombre.value = cliente[0];
   clienteApellido.value = cliente[1];
   clienteRut.value = cliente[2];
@@ -209,6 +210,7 @@ const editCliente = async (id_cliente) => {
 
   editingStatus = true;
   ediotClienteId = id_cliente;
+  clienteId.disabled = true;
 };
 
 
@@ -226,8 +228,7 @@ const { validateRUT} = require('validar-rut')
 
 clienteForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  if ((clienteNombre.value).length < 20 || (clienteApellido.value).legnth < 20) {
-    if (validateRUT(clienteRut.value) == true ) {
+    
      
       try {
         const cliente = [
@@ -244,10 +245,9 @@ clienteForm.addEventListener("submit", async (e) => {
             if (clienteId.value.length !== 0 || clienteApellido.value.length !== 0 || clienteRut.value.length !== 0 || clienteFecNac.value.length !== 0 || clienteEmail.value.length !== 0) {
               if ((clienteNombre.value).length < 20 || (clienteApellido.value).legnth < 20){
                 if (validateRUT(clienteRut.value) == true ){
-                  
+                  const savedCliente = await clienteQuerys.createCliente(cliente);
                 }
               }
-              const savedCliente = await clienteQuerys.createCliente(cliente);
             }else{
                 notifier.notify({
                   title: 'Siglo 21',
@@ -259,6 +259,7 @@ clienteForm.addEventListener("submit", async (e) => {
           cliente.push(ediotClienteId);
           cliente.shift();
           const clienteUpdated = await clienteQuerys.updateCliente(cliente);
+          clienteId.disabled = false;
           console.log(clienteUpdated);
     
           // Reset
@@ -271,21 +272,7 @@ clienteForm.addEventListener("submit", async (e) => {
         getCliente();
       } catch (error) {
         console.log(error);
-      }
-    
-  }else{
-    notifier.notify({
-      title: 'Siglo 21',
-      message: 'Rut mal ingresado(11999000-2)'
-    }); 
-}
-   }else{
-    notifier.notify({
-      title: 'Siglo 21',
-      message: 'Largo de nombre y apellido superan el limite(20)'
-    });}
-
-  
+      } 
 });
 
 function renderCliente(tasks) {
@@ -327,6 +314,7 @@ const deleteBodega = async (sku) => {
 
 const editBodega = async (sku) => {
   const bodega = await bodegaQuerys.getbodegaBysku([sku]);
+  bodegaSku.value = sku;
   bodegaNombre.value = bodega[0];
   bodegaMarca.value = bodega[1];
   bodegaStock.value = bodega[2];
@@ -334,6 +322,7 @@ const editBodega = async (sku) => {
 
   editingStatus = true;
   editbodegaSku = sku;
+  bodegaSku.disabled = true;
 };
 
 bodegaForm.addEventListener("submit", async (e) => {
@@ -357,6 +346,7 @@ bodegaForm.addEventListener("submit", async (e) => {
       bodega.shift();
       bodega.unshift(editbodegaSku);
       const bodegaUpdated = await bodegaQuerys.updateBodega(bodega);
+      bodegaSku.disabled = false;
       console.log(bodega);
       console.log(bodegaUpdated);
 
@@ -422,21 +412,22 @@ const deleteMesa = async (mesaId) => {
   return;
 };
 
-const editMesa = async (mesaId) => {
+const editMesa = async (mesaIdbd) => {
   const estado = document.getElementById("estado")
   estado.innerHTML = `<select class="form-select" aria-label="Selecciona una Zona" id="estadoMesa">
   <option value = "Disponible">Disponible</option>
   <option value = "Ocupada">Ocupada</option>
 </select>`
   const estadoMesa = document.getElementById("estadoMesa")
-  const mesa = await mesaQuerys.getMesaById([mesaId]);
+  const mesa = await mesaQuerys.getMesaById([mesaIdbd]);
+  mesaId.value = mesaIdbd
   mesaCamarero.value = mesa[0];
   mesaSillas.value = parseInt(mesa[1]);
   mesaZonas.value = mesa[2];
   estadoMesa.value = mesa[3];
   editingStatus = true;
-  ediotMesaId = mesaId;
-  
+  ediotMesaId = mesaIdbd;
+  mesaId.disabled = true  
 };
 
 mesaForm.addEventListener("submit", async (e) => {
@@ -461,6 +452,7 @@ mesaForm.addEventListener("submit", async (e) => {
       mesa.push(estadoMesa.value)
       console.log(mesa);
       const mesaUpdated = await mesaQuerys.updateMesa(mesa);
+      mesaId.disabled = false
       console.log(mesaUpdated);
 
       // Reset
@@ -524,6 +516,7 @@ const deletePlato = async (platoId) => {
 
 const editPlato = async (platoId) => {
   const plato = await platoQuerys.getPlatoById([platoId]);
+  idPlato.value = platoId;
   nombrePlato.value = plato[0];
   stockPlato.value = parseInt(plato[1]);
   tipoPlato.value = plato[2];
@@ -533,6 +526,7 @@ const editPlato = async (platoId) => {
 
   editingStatus = true;
   ediotPlatoId = platoId;
+  idPlato.disabled = true;
 };
 
 platoForm.addEventListener("submit", async (e) => {
@@ -558,6 +552,7 @@ platoForm.addEventListener("submit", async (e) => {
       plato.unshift(ediotPlatoId);
       console.log(plato);
       const platoUpdated = await platoQuerys.updatePlato(plato);
+      idPlato.disabled = false;
       console.log(platoUpdated);
 
       // Reset
@@ -624,10 +619,12 @@ const deleteProveedor = async (proveedorId) => {
 const editProveedor = async (proveedorId) => {
   const proveedor = await ProveedorQuerys.getProveedorById([proveedorId]);
 
+  idProveedor.value = proveedorId;
   contenidoCreado.value = proveedor[0];
   ProveedorFechaEntrega.value = proveedor[2];
   editingStatus = true;
   ediotProveedorId = proveedorId;
+  idProveedor.disabled = true;
 };
 let today = new Date();
 let dd = today.getDate();
@@ -660,13 +657,12 @@ proveedorForm.addEventListener("submit", async (e) => {
       const savedProveedor = await ProveedorQuerys.createProveedor(proveedor);
       console.log(savedProveedor);
     } else {
-      proveedor.unshift(ediotProveedorId);
+    
       const proveedorFinal = proveedor.filter(String);
 
       console.log(proveedorFinal);
-      const ProveedorUpdated = await ProveedorQuerys.updateProveedor(
-        proveedorFinal
-      );
+      const ProveedorUpdated = await ProveedorQuerys.updateProveedor(proveedorFinal);
+      idProveedor.disabled = false;
       console.log(ProveedorUpdated);
 
       // Reset
@@ -739,14 +735,71 @@ const formCerrar = document.querySelector("#formCerrar");
 let caja = [];
 
 let ediotCajaId;
+const calculoDiarioId = [
+
+]
+const calculoDiario = [
+
+]
+
+const calculaCaja = async (cajaId) => {
+  const calcular = await cajaQuerys.calcularCajaById([cajaId]);
+  const calculoArea = document.querySelector("#calculo");
+  const btnTotal = document.querySelector("#btnTotal")
+  const calculo = calcular[1]-calcular[0]
+
+  if (calculoDiarioId.length > 0) {
+    btnTotal.innerHTML =`<a class="btn btn-success btn-sm" >Calcular total de ganancias</a>`
+  }
+  const resultado = calculoDiarioId.find(e => e == cajaId)
+  if (calculoDiarioId != "") {
+    if (resultado != cajaId) {
+        calculoDiarioId.push(calculo,cajaId)
+        calculoDiario.push(calculo)
+        calculoArea.innerHTML += `<div class="container"><h4>Ganancias de la caja ${cajaId} en el día: ${formatter.format(calculo)}</h4></div>` 
+    }else{
+      notifier.notify({
+        title: 'Siglo 21',
+        message: 'Ya se calculo este día!'
+      });
+
+    }
+  }else{
+    calculoDiarioId.push(calculo,cajaId)
+    calculoDiario.push(calculo)
+    calculoArea.innerHTML += `<div class="container"><h4>Ganancias de la caja ${cajaId} en el día: ${formatter.format(calculo)}</h4></div>`
+  }
+  
+  
+  console.log(calculoDiarioId)
+  
+}
+btnTotal.addEventListener("click", async (e) => {
+  const resultado = document.querySelector("#total");
+  const total = calculoDiario.reduce((a,b) => a+b, 0);
+  resultado.innerHTML = `<div><h5>Total entre los días:<strong>${formatter.format(total)}</strong></h5></div>`
+})
 
 const cerrarCaja = async (cajaId) => {
-  formCaja.className = "inv";
-  formCerrar.className = "vis card card-body";
-  formCerrar.innerHTML += `<input type="number" id="saldoFinalCaja" placeholder="Saldo Final" step="any" class="form-control" /><a class="btn btn-secondary btn-sm" onClick="enviarCajaCerrada('${cajaId}')">Ingresar</a>`;
+  const estado = await cajaQuerys.getEstadoById([cajaId]);
+  console.log(estado[0])
+  if (estado  != "Cerrada") {
+    formCaja.className = "inv";
+    formCerrar.className = "vis card card-body";
+    formCerrar.innerHTML += `<input type="number" id="saldoFinalCaja" placeholder="Saldo Final" step="any" class="form-control" />
+    <a class="btn btn-secondary btn-sm" onClick="enviarCajaCerrada('${cajaId}')">Ingresar</a>`;
+  }else{
+    notifier.notify({
+      
+      title: 'Siglo 21',
+      message: 'La caja ya se encuentra cerrada'
+    });
+  }
+  
 };
 const enviarCajaCerrada = async (id) => {
   const saldoFinal = document.querySelector("#saldoFinalCaja");
+  
   cerrar = [
     (cajaId = id),
     (fechaFinalCaja = today2),
@@ -818,10 +871,8 @@ function renderCaja(tasks) {
           <td>${formatter.format(t[4])}</td>
           <td>${formatter.format(t[5])}</td>
           <td>${t[6]}</td>
-          <td><button class="btn btn-danger btn-sm" onclick="cerrarCaja('${t[0]}')">
-          Cerrar Caja
-        </button>
-        </button></td>
+          <td><button class="btn btn-danger btn-sm" onclick="cerrarCaja('${t[0]}')">Cerrar Caja</button></td>
+          <td><button class="btn btn-success btn-sm" onclick="calculaCaja('${t[0]}')">Calcular ganancia</button></td>
         </tr>  
     `;
   });

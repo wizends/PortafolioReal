@@ -5,7 +5,7 @@ oracledb.outFormat = oracledb.OUT_FORMAT_ARRAY;
 
 const consultaDisponibilidad = async(asignacion) =>{
     const conn = await obtenerConn();
-    const sql = "select * from mesa where sillas = :cantidad and zona = :zona and estado ='Disponble'";
+    const sql = "select * from mesa where sillas = :cantidad and zona = :zona and estado ='Disponible'";
     const result = await conn.execute(sql,asignacion);
     console.log(result.rows)
     return result.rows

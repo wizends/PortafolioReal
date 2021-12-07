@@ -30,7 +30,7 @@
       </div>
       <!-- Cliente -->
       <div class="col-md-10 vis" id="tablaCliente">
-        <div>
+        <div class="tabla">
           <table class="table table-hover animated fadeInRight" id="clienteCabecera">
             <thead>
               <tr>
@@ -51,13 +51,13 @@
           <form id="clienteForm" class="card card-body">
             <!-- Cliente Form -->
             <div class="form-group">
-              <input type="text" id="idCliente" placeholder="Id cliente:123" class="form-control" autofocus required/>
+              <input type="text" id="idCliente" placeholder="Id cliente:123" pattern="[0-9]" class="form-control" autofocus required/>
             </div>
             <div class="form-group">
-              <input type="text" id="clienteNombre" pattern="^[a-zA-Z\s]{2,254}" placeholder="Nombres" step="any" class="form-control" required/>
+              <input type="text" id="clienteNombre" pattern="^[a-zA-Z \s]{2,254}" placeholder="Nombres" step="any" class="form-control" required/>
             </div>
             <div class="form-group">
-              <input type="text" id="apellido" pattern="^[a-zA-Z\s]{2,254}" placeholder="Apellidos" step="any" class="form-control" required/>
+              <input type="text" id="apellido" pattern="^[a-zA-Z \s]{2,254}" placeholder="Apellidos" step="any" class="form-control" required/>
             </div>
             <div class="form-group">
               <input type="text" id="rut" placeholder="Rut:11999222-5" step="any" class="form-control" required/>
@@ -75,7 +75,7 @@
       <!-- Fin Cliente -->
       <!-- Bodega -->
       <div class="col-md-10 inv" id="tablaBodega">
-        <div>
+        <div class="tabla">
           <table class="table table-hover animated fadeInRight" id="cabeceraBodega">
             <thead>
               <tr>
@@ -116,7 +116,7 @@
       <!--Fin Bodega -->
       <!-- Mesa -->
       <div class="col-md-10 inv" id="tablaMesa">
-        <div>
+        <div class="tabla">
           <table id="cabeceraMesa" class="table table-hover animated fadeInRight">
             <thead>
               <tr>
@@ -166,7 +166,7 @@
 
       <!--Inicio seccion Plato-->
       <div class="col-md-10 inv" id="tablaPlato">
-        <div>
+        <div class="tabla">
           <table id="cabeceraPlato" class="table table-hover animated fadeInRight">
             <thead>
               <tr>
@@ -225,12 +225,13 @@
             <button type="submit" class="btn btn-primary">Agregar</button>
           </form>
         </div>
+        
       </div>
       <!--Plato Plato-->
 
       <!--Inicio seccion Proveedor-->
       <div class="inv" id="tablaProveedor">
-        <div>
+        <div class="tabla">
           <table id="cabeceraProveedor" class="table table-hover animated fadeInRight">
             <thead>
               <tr>
@@ -284,7 +285,7 @@
 
       <!--Inicio seccion Caja-->
       <div class="inv" id="tablaCaja">
-        <div>
+        <div class="tabla">
           <table id="cabeceraCaja" class="table table-hover">
             <thead>
               <tr>
@@ -307,6 +308,15 @@
         <div class="inv" id="formCerrar">
 
         </div>
+        <div class="card card-body" id="calculo">
+         
+        </div>
+        <div id="btnTotal">
+
+        </div>
+        <div id="total">
+          
+        </div>
         <div class="inv" id="formCaja">
           <!-- Caja Form -->
           <form id="cajaForm" class="card card-body">
@@ -323,6 +333,7 @@
             <button type="submit" class="btn btn-primary">Iniciar Caja</button>
           </form>
         </div>
+       
       </div>
       <!--Caja Caja-->
 

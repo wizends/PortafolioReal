@@ -1,6 +1,11 @@
 body {
   margin: 0;
   padding: 0;
+  overflow:hidden;
+}
+.logo{
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #products {
@@ -128,7 +133,14 @@ html, body{
 }
 .imagenPdf{
   max-width: 150px;
+  margin-left: auto;
+  margin-right: auto;
 }
 #botonActualizar{
   display:table;
+}
+.tabla{
+  overflow-y:scroll;
+  overflow-x: hidden;
+  height: 300px;
 }

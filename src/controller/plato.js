@@ -26,7 +26,7 @@ const createPlato = async (plato) => {
   
   const getPlato = async () => {
     const conn = await obtenerConn();
-    const results = await conn.execute("select id, nombre, stock, tipo, precio from plato");
+    const results = await conn.execute("select id, nombre, stock, tipo, precio from plato order by id asc");
     return results.rows;
   };
   
