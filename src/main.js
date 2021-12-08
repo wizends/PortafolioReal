@@ -12,6 +12,7 @@ function createBodegaView() {
   bodegaWindow.loadFile("src/ui/views/bodega.html")
   bodegaWindow.once("ready-to-show", () => {
     bodegaWindow.show();
+    bodegaWindow.maximize()
   });
 }
 
@@ -27,6 +28,7 @@ function createClienteView() {
   clienteWindow.loadFile("src/ui/views/cliente.html")
   clienteWindow.once("ready-to-show", () => {
     clienteWindow.show();
+    clienteWindow.maximize()
   });
 }
 
@@ -43,6 +45,7 @@ function createFinanzaView() {
   finanzaWindow.loadFile("src/ui/views/finanza.html")
   finanzaWindow.once("ready-to-show", () => {
     finanzaWindow.show();
+    finanzaWindow.maximize()
   });
 }
 
@@ -58,6 +61,7 @@ function createCocinaView() {
   CocinaWindow.loadFile("src/ui/views/cocina.html")
   CocinaWindow.once("ready-to-show", () => {
     CocinaWindow.show();
+    CocinaWindow.maximize()
   });
 }
 
@@ -74,6 +78,7 @@ function createPrincipalView() {
   childWindow.loadFile("src/ui/views/logged-on.html")
   childWindow.once("ready-to-show", () => {
   childWindow.show();
+  childWindow.maximize()
   });
 }
 
@@ -89,6 +94,7 @@ function createLoginView() {
   loginWindow.loadFile("src/ui/views/login.html")
   loginWindow.once("ready-to-show", () => {
   loginWindow.show();  
+  loginWindow.maximize()
   });
 }
 
@@ -103,6 +109,7 @@ function createSeleccionView() {
   
   });
   mainWindow.loadFile("src/ui/views/seleccion.html");
+  mainWindow.maximize()
   mainWindow.on('close', () => {
     app.quit();
   })
