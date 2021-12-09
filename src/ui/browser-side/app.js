@@ -180,7 +180,7 @@ const clienteNombre = document.querySelector("#clienteNombre");
 const clienteApellido = document.querySelector("#apellido");
 const clienteId = document.querySelector("#idCliente");
 const clienteRut = document.querySelector("#rut");
-const clienteFecNac = document.querySelector("#fecnac");
+const clienteTelefono = document.querySelector("#clienteTelefono");
 const clienteEmail = document.querySelector("#email");
 const btnCliente = document.querySelector("#btnCliente");
 const clienteList = document.querySelector("#cliente");
@@ -205,9 +205,9 @@ const editCliente = async (id_cliente) => {
   clienteNombre.value = cliente[0];
   clienteApellido.value = cliente[1];
   clienteRut.value = cliente[2];
-  clienteFecNac.value = cliente[3];
-  clienteEmail.value = cliente[4];
-
+  clienteEmail.value = cliente[3];
+  clienteTelefono.value = cliente[4];
+  
   editingStatus = true;
   ediotClienteId = id_cliente;
   clienteId.disabled = true;
@@ -236,8 +236,8 @@ clienteForm.addEventListener("submit", async (e) => {
           (nombres = clienteNombre.value),
           (apellidos = clienteApellido.value),
           (rut = clienteRut.value),
-          (fecha_nac = clienteFecNac.value),
           (email = clienteEmail.value),
+          (telefono = clienteTelefono.value)
         ];
         e.preventDefault();
     

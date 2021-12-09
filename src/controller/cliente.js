@@ -7,7 +7,7 @@ const createCliente =  async (cliente) => {
 
     try {
       const conn = await obtenerConn();
-      const sql = 'BEGIN sp_insertarCliente(:id,:nombre,:apellido,:rut,:fecha_nac,:email); END;';
+      const sql = 'BEGIN sp_insertarCliente(:id,:nombre,:apellido,:rut,:email,:telefono); END;';
       conn.execute(sql,cliente);
       conn.commit();
       //Notificacion 
@@ -44,13 +44,13 @@ const createCliente =  async (cliente) => {
   };
   const getClienteByid = async (id_cliente) => {
     const conn = await obtenerConn();
-    const result = await conn.execute("select nombres, apellidos, rut, fecha_nac, email  from cliente where id_cliente = :id", id_cliente);
+    const result = await conn.execute("select nombres, apellidos, rut, email, telefono  from cliente where id_cliente = :id", id_cliente);
     console.log(result.rows)
     return result.rows[0];
   };
   const updateCliente = async (cliente) => {
     const conn = await obtenerConn();
-    const sql = 'BEGIN sp_updatecliente(:nombre,:apellido,:rut,:fecha_nac,:email,:id); END;';
+    const sql = 'BEGIN sp_updatecliente(:nombre,:apellido,:rut,:email,:id,:fecha_nac); END;';
     const result = await conn.execute(sql,cliente);
     conn.commit();
     console.log(result)

@@ -5,7 +5,7 @@ oracledb.outFormat = oracledb.OUT_FORMAT_ARRAY;
 
   const getPedido = async () => {
     const conn = await obtenerConn();
-    const results = await conn.execute("select * from Pedido where estado = 'Preparacion'");
+    const results = await conn.execute("select id,pedido,estado from orden where estado = 'En proceso'");
     return results.rows;
   };
   

@@ -1,10 +1,10 @@
 const notifier = require('node-notifier');
 const pedidoQuerys = require("../../controller/cocina");
 
-const pedidoList = document.querySelector("#pedido");
+const pedidoList = document.querySelector("#cocina");
 
 const enviarPedidoCerrado = async (id) => {
-  pedidoQuerys.cerrarPedido(id);
+  pedidoQuerys.cerrarPedido([id]);
   getPedido();
   notifier.notify({
     title: 'Siglo 21',
@@ -21,7 +21,8 @@ function renderPedido(tasks) {
         <tr>
           <th scope="row">${t[0]}</th>
           <td>${t[1]}</td>
-          <td><button class="btn btn-danger btn-sm" onclick="enviarPedidoCerrado('${t[0]}')">
+          <td>${t[2]}</td>
+          <td><button class="btn btn-danger btn-sm" onclick="enviarPedidoCerrado(${t[0]})">
           Cerrar Pedido
         </button>
         </button></td>
